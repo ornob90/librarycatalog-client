@@ -17,7 +17,7 @@ const Borrowed = () => {
       </div>
 
       <div className="my-16">
-        <div className="flex items-center gap-8 md:gap-10 text-medium font-medium">
+        <div className="flex items-center justify-evenly md:justify-start gap-8 md:gap-10 text-medium font-medium">
           <p className="pb-2 border-b-[3px] border-b-black  text-sm md:text-base">
             History
           </p>

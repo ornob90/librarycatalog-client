@@ -8,7 +8,7 @@ const BorrowCard = () => {
         <img
           src="https://m.media-amazon.com/images/I/81XCRGlex6L._AC_UF1000,1000_QL80_.jpg"
           alt=""
-          className="h-[200px]"
+          className="h-[300px] md:h-[200px]"
         />
       </div>
       <div className="mt-8 flex flex-col gap-2">
