@@ -1,6 +1,7 @@
 import React from "react";
 import Container from "../../components/shared/Container";
 import Button from "../../components/Shared/Button";
+import BorrowCard from "../../components/Card/BorrowCard";
 
 const Borrowed = () => {
   return (
@@ -23,7 +24,9 @@ const Borrowed = () => {
         </div>
         <hr className=" border border-gray-200" />
       </div>
-      <div></div>
+      <div className="my-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        <BorrowCard />
+      </div>
     </Container>
   );
 };
