@@ -14,7 +14,7 @@ const Footer = () => {
       } ${isDark ? "bg-[#121212] text-white" : "bg-base-200"}`}
     >
       <aside className="">
-        <NavLink className="text-lg md:text-2xl">VehicleCommerce</NavLink>
+        <NavLink className="text-lg md:text-2xl">LibraryCatalog</NavLink>
         <p>
           ACME Industries Ltd.
           <br />

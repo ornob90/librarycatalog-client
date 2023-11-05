@@ -3,7 +3,6 @@ import useAxios from "./useAxios";
 
 const usePut = (queryKey) => {
   const queryClient = useQueryClient();
-
   const axiosSecure = useAxios();
 
   const { mutateAsync } = useMutation({

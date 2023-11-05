@@ -1,6 +1,9 @@
 import React from "react";
 import Container from "../../components/shared/Container";
 import Button from "../../components/Shared/Button";
+import Lottie from "react-lottie";
+import reviewAnimation from "../../assets/animation/reviews.json";
+import SectionHeader from "../../components/shared/SectionHeader";
 
 const Testimonials = () => {
   const testimonials = [
@@ -31,9 +34,23 @@ const Testimonials = () => {
     // Additional testimonials can be added here
   ];
 
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: reviewAnimation,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
+
   return (
-    <div className="h-auto mb-12">
-      <div className="bg-gray-100 pt-12">
+    <div className="h-auto mb-20">
+      <div className="bg-gray-100">
+        <SectionHeader
+          subHeader="Reader Voices"
+          header="Our Readers Speak"
+          desc="Genuine Experiences, Real Testimonials"
+        />
         <Container className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 h-full relative pb-20">
           <div
             className="lg:col-span-3 flex flex-col gap-4 
@@ -51,12 +68,7 @@ const Testimonials = () => {
             </p>
           </div>
           <div className="h-full lg:col-span-2 flex  justify-evenly">
-            <img
-              // src="https://images.unsplash.com/photo-1618365908648-e71bd5716cba?auto=format&fit=crop&q=80&w=1470&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              src="./review.png"
-              alt=""
-              className="w-[50%] object-cover"
-            />
+            <Lottie options={defaultOptions} height={400} width={400} />
           </div>
         </Container>
       </div>
