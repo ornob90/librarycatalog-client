@@ -3,8 +3,8 @@ import Container from "../../components/shared/Container";
 
 const Banner = () => {
   return (
-    <div className="min-h-[500px] h-[70vh] bg-gray-100 pt-[25%] sm:pt-[15%] md:pt-[7%]">
-      <Container className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 h-full  ">
+    <div className="min-h-[500px] h-[70%] bg-gray-100 pt-[25%] sm:pt-[15%] md:pt-[7%]">
+      <Container className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 h-full">
         <div
           className="lg:col-span-3 flex flex-col gap-4 
          justify-center text-center md:text-left"
