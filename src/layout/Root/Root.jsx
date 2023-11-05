@@ -5,7 +5,7 @@ import Navbar from "./Navbar";
 
 const Root = () => {
   return (
-    <div>
+    <div className="relative">
       <Navbar />
       <Outlet />
     </div>
