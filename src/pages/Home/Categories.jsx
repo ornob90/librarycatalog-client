@@ -2,6 +2,7 @@ import React from "react";
 import Container from "../../components/shared/Container";
 import SectionHeader from "../../components/shared/SectionHeader";
 import { BsBoxArrowInUpRight } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
 
 const Categories = () => {
   const book_categories = [
@@ -27,6 +28,8 @@ const Categories = () => {
     },
   ];
 
+  const navigate = useNavigate();
+
   return (
     <Container>
       <SectionHeader
@@ -39,6 +42,7 @@ const Categories = () => {
           <div
             key={id}
             className="bg-gray-100 h-[300px] rounded-lg shadow-lg active:scale-95 duration-300 hover:scale-[.98]"
+            onClick={() => navigate(`/books/${name}`)}
           >
             <img
               src={img}
