@@ -44,7 +44,7 @@ const Testimonials = () => {
   };
 
   return (
-    <div className="h-auto mb-20">
+    <div className="h-auto mb-20 ">
       <div className="bg-gray-100">
         <SectionHeader
           subHeader="Reader Voices"

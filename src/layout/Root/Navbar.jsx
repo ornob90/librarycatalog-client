@@ -4,6 +4,7 @@ import Button from "../../components/Shared/Button";
 import { useContext, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import AuthContext from "../../Context/AuthContext";
+import { BsFillMoonStarsFill, BsFillSunFill } from "react-icons/bs";
 // import useTheme from "../../Hooks/useTheme";
 
 const Navbar = () => {
@@ -52,7 +53,7 @@ const Navbar = () => {
       <li>
         <NavLink
           onClick={() => setHidden(!hidden)}
-          to="/cart"
+          to="/borrowed"
           className={({ isActive }) =>
             isActive
               ? "font-medium bg-black text-white py-2 px-3 rounded-sm"
