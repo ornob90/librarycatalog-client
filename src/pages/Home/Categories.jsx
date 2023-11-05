@@ -41,7 +41,7 @@ const Categories = () => {
         {book_categories.map(({ id, img, name }) => (
           <div
             key={id}
-            className="bg-gray-100 h-[300px] rounded-lg shadow-lg active:scale-95 duration-300 hover:scale-[.98]"
+            className="bg-gray-100 h-[300px] rounded-lg shadow-lg active:scale-95 duration-300 "
             onClick={() => navigate(`/books/${name}`)}
           >
             <img

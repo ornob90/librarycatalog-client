@@ -55,7 +55,7 @@ const About = () => {
           <h1 className="font-bold text-3xl sm:text-4xl md:text-3xl lg:text-5xl">
             Explore Our Library
           </h1>
-          <p className="text-[#808080] text-[13px] w-3/4 mx-auto md:m-0 lg:w-2/4 text-center md:text-left">
+          <p className="text-[#808080] text-[13px] w-3/4 mx-auto md:m-0 lg:w-3/4 text-center md:text-left">
             "Welcome to our library, a haven of literary treasures. We're
             dedicated to fostering a love for reading, offering a diverse
             collection spanning various genres and authors. Our mission is to

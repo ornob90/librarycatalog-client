@@ -4,6 +4,7 @@ import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
 import BookByCategory from "../pages/BookByCategory.jsx/BookByCategory";
+import BookDetail from "../pages/BookDetail/BookDetail";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: "/books/:category",
         element: <BookByCategory />,
+      },
+      {
+        path: "/book/:id",
+        element: <BookDetail />,
       },
     ],
   },

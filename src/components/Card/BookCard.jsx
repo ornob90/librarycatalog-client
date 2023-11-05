@@ -1,8 +1,10 @@
 import React from "react";
 import Button from "../Shared/Button";
 import { Rating } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const BookCard = () => {
+  const navigate = useNavigate();
   return (
     <div className="flex flex-col gap-4 h-[400px] border rounded-lg shadow-lg">
       <div className="py-4 h-[60%] bg-gray-200 rounded-t-lg">
@@ -27,7 +29,10 @@ const BookCard = () => {
           <p className="text-black font-semibold ">History</p>
         </div>
 
-        <Button className="bg-black text-white py-1 px-2 md:py-2 md:px-5  text-sm md:text-base w-full rounded-lg font-bold ">
+        <Button
+          className="bg-black text-white py-1 px-2 md:py-2 md:px-5  text-sm md:text-base w-full rounded-lg font-bold "
+          onClick={() => navigate("/book/1")}
+        >
           Details
         </Button>
       </div>

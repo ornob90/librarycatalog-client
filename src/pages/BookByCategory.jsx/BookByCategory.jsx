@@ -6,9 +6,9 @@ import BookCard from "../../components/Card/BookCard";
 const BookByCategory = () => {
   return (
     <div className="mb-14">
-      <div className="bg-gray-200 pt-[5%] ">
+      <div className="bg-gray-200 pt-[25%] sm:pt-[20%] lg:pt-[5%] ">
         <Container>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 h-[300px]">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 h-max">
             <div
               className="lg:col-span-3 flex flex-col gap-4 
    justify-center text-center md:text-left"
@@ -26,10 +26,9 @@ const BookByCategory = () => {
             </div>
             <div className="h-[300px] lg:col-span-2 flex flex-col justify-center">
               <img
-                // src="https://images.unsplash.com/photo-1618365908648-e71bd5716cba?auto=format&fit=crop&q=80&w=1470&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                 src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&q=80&w=1374&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                 alt=""
-                className="h-[90%] object-cover w-full"
+                className="h-[80%] object-cover w-full"
               />
             </div>
           </div>
@@ -37,11 +36,15 @@ const BookByCategory = () => {
       </div>
 
       <Container>
-        <div className="text-center text-2xl md:text-4xl font-bold mt-10">
+        <div className="text-center text-2xl md:text-4xl font-bold my-10">
           <h1>Discover You Books</h1>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-[80%] mx-auto">
+          <BookCard />
+          <BookCard />
+          <BookCard />
+          <BookCard />
           <BookCard />
         </div>
       </Container>
