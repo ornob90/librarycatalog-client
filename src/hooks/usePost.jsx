@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import useAxios from "./useAxios";
 
-const usePost = (queryKey, endpoint) => {
+const usePost = (queryKeys, endpoint) => {
   const queryClient = useQueryClient();
 
   const axiosSecure = useAxios();
@@ -12,7 +12,9 @@ const usePost = (queryKey, endpoint) => {
       return res.data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries(queryKey);
+      queryKeys.forEach((queryKey) => {
+        queryClient.invalidateQueries(queryKey);
+      });
     },
   });
 

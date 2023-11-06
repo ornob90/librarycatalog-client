@@ -5,10 +5,10 @@ const useGet = (queryKeys, endpoint) => {
   const axiosSecure = useAxios();
 
   const { data, isLoading, isFetching, refetch } = useQuery({
-    queryKey: [...queryKeys],
+    queryKey: queryKeys,
     queryFn: async () => {
       const res = await axiosSecure.get(endpoint);
-      return res?.data;
+      return res.data;
     },
   });
 
