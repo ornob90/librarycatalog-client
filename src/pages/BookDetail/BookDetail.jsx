@@ -2,6 +2,7 @@ import React from "react";
 import Container from "../../components/shared/Container";
 import { Rating } from "@mui/material";
 import Button from "../../components/Shared/Button";
+import BorrowedForm from "../../components/Form/BorrowedForm";
 
 const BookDetail = () => {
   return (
@@ -42,9 +43,18 @@ const BookDetail = () => {
               <p className="font-bold text-xl">History</p>
             </div>
             <div className="flex justify-between w-full">
-              <Button className="border border-black font-semibold w-2/5 py-2">
+              <Button
+                onClick={() =>
+                  document.getElementById("my_modal_1").showModal()
+                }
+                className="border border-black font-semibold w-2/5 py-2"
+              >
                 Borrow
               </Button>
+              <dialog id="my_modal_1" className="modal">
+                <BorrowedForm />
+              </dialog>
+
               <Button className="bg-black w-2/5 text-white font-semibold">
                 Read
               </Button>
