@@ -1,13 +1,14 @@
 import React from "react";
 import Container from "../../components/shared/Container";
 import Button from "../../components/Shared/Button";
+import AllBookCard from "../../components/Card/AllBookCard";
 
 const AllBooks = () => {
   return (
     <Container className="pt-[35%] md:pt-[15%] lg:pt-[10%] mb-16">
       <div className="flex flex-col md:flex-row justify-center md:justify-between">
         <div className="flex flex-col gap-4">
-          <h2 className="text-xl sm:text-3xl md:text-2xl font-bold ">
+          <h2 className="text-xl sm:text-3xl font-bold ">
             Complete Book Catalog
           </h2>
           <p className="text-[#808080] ">
@@ -25,6 +26,16 @@ const AllBooks = () => {
             Filter Available
           </Button>
         </div>
+      </div>
+      <hr className="mt-4 border border-gray-300" />
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mt-10 gap-4">
+        <AllBookCard />
+        <AllBookCard />
+        <AllBookCard />
+        <AllBookCard />
+        <AllBookCard />
+        <AllBookCard />
       </div>
     </Container>
   );
