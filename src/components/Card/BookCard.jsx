@@ -8,12 +8,12 @@ const BookCard = ({ book }) => {
     _id,
     image,
     name,
-    quantity,
+    // quantity,
     author_name,
     category,
-    short_description,
+    // short_description,
     rating,
-    content,
+    // content,
   } = book || {};
 
   const navigate = useNavigate();

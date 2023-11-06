@@ -3,47 +3,62 @@ import Container from "../../components/shared/Container";
 import { Rating } from "@mui/material";
 import Button from "../../components/Shared/Button";
 import BorrowedForm from "../../components/Form/BorrowedForm";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import useGet from "../../hooks/useGet";
 
 const BookDetail = () => {
   const navigate = useNavigate();
 
+  const { id } = useParams();
+
+  const { data: book, isLoading } = useGet(["BookDetails", id], `/book/${id}`);
+
+  const {
+    _id,
+    image,
+    name,
+    quantity,
+    author_name,
+    category,
+    short_description,
+    rating,
+    // content,
+  } = book || {};
+
   return (
-    <Container className="min-h-screen pt-[28%] md:pt-[10%] mb-14">
+    <Container className="min-h-screen pt-[33%] sm:pt-[28%]   md:pt-[15%] lg:pt-[12%] mb-14">
       <div className="grid grid-cols-1 md:grid-cols-5 gap-10 md:gap-0">
         <div className="md:col-span-3 ">
           <img
-            src="https://pictures.abebooks.com/isbn/9780794524784-uk.jpg"
-            alt=""
-            className="mx-auto"
+            src={image}
+            alt={name}
+            className="mx-auto w-[180px] sm:w-[250px] lg:w-[300px] "
           />
         </div>
 
         <div className="md:col-span-2 flex flex-col  gap-4">
           <div>
-            <p className="text-[#808080] font-bold">Explore</p>
-            <h1 className="font-bold text-3xl my-3 ">
-              The Us borne Book of World History
-            </h1>
+            <p className="text-[#808080] font-bold">{author_name}</p>
+            <h1 className="font-bold text-3xl my-3 ">{name}</h1>
             <p>
-              <span className="text-xl font-semibold">10</span> available
+              <span className="text-xl font-semibold">{quantity}</span>{" "}
+              available
             </p>
           </div>
-          <div className="flex flex-col gap-3 border">
+          <div className="flex flex-col gap-3 border min-h-[25%]">
             <p className="text-sm text-gray-500 p-4 w-[80%] rounded-lg">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquid
-              saepe, quis temporibus cumque iusto dolorum.
+              {short_description}
             </p>
           </div>
           <div className="border rounded-md p-4 w-full  h-[35%] flex flex-col justify-evenly gap-5">
             <div className="flex justify-between items-center">
               <Rating
                 name="half-rating-read"
-                value={4.5}
+                value={rating}
                 precision={0.5}
                 readOnly
               />
-              <p className="font-bold text-xl">History</p>
+              <p className="font-bold text-xl">{category}</p>
             </div>
             <div className="flex justify-between w-full">
               <Button
