@@ -3,10 +3,12 @@ import Container from "../../components/shared/Container";
 import Button from "../../components/Shared/Button";
 import AllBookCard from "../../components/Card/AllBookCard";
 import useGet from "../../hooks/useGet";
+import useAuth from "../../hooks/useAuth";
 
 const AllBooks = () => {
   const [page, setPage] = useState(0);
   const [filter, setFilter] = useState(false);
+  const { user } = useAuth();
   const size = 5;
 
   const { data: numOfBooks, isLoading: numOfBookLoad } = useGet(
@@ -56,8 +58,14 @@ const AllBooks = () => {
             Available
           </p>
           <div className="flex  gap-4 items-center">
-            <div className="hidden md:block h-[30px] w-[30px] rounded-full border border-black"></div>
-            <p className="hidden md:block font-semibold">Kazi Towfiq</p>
+            <div className="hidden md:block h-[30px] w-[30px] rounded-full border border-black">
+              <img
+                src={user?.photoURL}
+                alt=""
+                className="w-full h-full object-cover rounded-full"
+              />
+            </div>
+            <p className="hidden md:block font-semibold">{user?.displayName}</p>
           </div>
         </div>
 
