@@ -35,22 +35,30 @@ const Borrowed = () => {
 
       <div className="my-16">
         <div className="flex items-center justify-evenly md:justify-start gap-8 md:gap-10 text-medium font-medium">
-          {categories &&
-            [{ name: "All", _id: 12341243 }, ...categories].map(
-              ({ name, _id }) => (
-                <p
-                  key={_id}
-                  className={`pb-2 text-sm md:text-base cursor-pointer ${
-                    name === "All" ? "w-[40px]" : ""
-                  } text-center ${
-                    activeCategory === name ? "border-b-2 border-black" : ""
-                  }`}
-                  onClick={() => setActiveCategory(name)}
-                >
-                  {name}
-                </p>
+          {categories
+            ? [{ name: "All", _id: 12341243 }, ...categories].map(
+                ({ name, _id }) => (
+                  <p
+                    key={_id}
+                    className={`pb-2 text-sm md:text-base cursor-pointer ${
+                      name === "All" ? "w-[40px]" : ""
+                    } text-center ${
+                      activeCategory === name ? "border-b-2 border-black" : ""
+                    }`}
+                    onClick={() => setActiveCategory(name)}
+                  >
+                    {name || "..."}
+                  </p>
+                )
               )
-            )}
+            : [0, 1, 2, 3, 4, 5].map((value) => (
+                <p
+                  key={value}
+                  className={`pb-2 text-sm md:text-base cursor-pointer  text-center `}
+                >
+                  ...
+                </p>
+              ))}
         </div>
         <hr className=" border border-gray-200" />
       </div>
