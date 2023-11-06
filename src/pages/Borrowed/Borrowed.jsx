@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import Container from "../../components/shared/Container";
 import Button from "../../components/Shared/Button";
 import BorrowCard from "../../components/Card/BorrowCard";
 import useAuth from "../../hooks/useAuth";
+import useGet from "../../hooks/useGet";
 
 const Borrowed = () => {
   const { user } = useAuth();
+
+  const { data: categories, isLoading } = useGet(
+    ["BorrowedCategories"],
+    "/categories-name"
+  );
+
+  const [activeCategory, setActiveCategory] = useState("All");
+
   return (
     <Container className="pt-[28%] md:pt-[10%] w-[80%] md:w-[60%]">
       <div className="flex flex-row justify-center md:justify-between items-start w-full">
@@ -26,12 +35,22 @@ const Borrowed = () => {
 
       <div className="my-16">
         <div className="flex items-center justify-evenly md:justify-start gap-8 md:gap-10 text-medium font-medium">
-          <p className="pb-2 border-b-[3px] border-b-black  text-sm md:text-base">
-            History
-          </p>
-          <p className="pb-2 text-sm md:text-base">Novel</p>
-          <p className="pb-2 text-sm md:text-base">Thriller</p>
-          <p className="pb-2 text-sm md:text-base">Sci-Fi</p>
+          {categories &&
+            [{ name: "All", _id: 12341243 }, ...categories].map(
+              ({ name, _id }) => (
+                <p
+                  key={_id}
+                  className={`pb-2 text-sm md:text-base cursor-pointer ${
+                    name === "All" ? "w-[40px]" : ""
+                  } text-center ${
+                    activeCategory === name ? "border-b-2 border-black" : ""
+                  }`}
+                  onClick={() => setActiveCategory(name)}
+                >
+                  {name}
+                </p>
+              )
+            )}
         </div>
         <hr className=" border border-gray-200" />
       </div>
