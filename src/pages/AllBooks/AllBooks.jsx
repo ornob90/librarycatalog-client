@@ -27,14 +27,12 @@ const AllBooks = () => {
 
   useEffect(() => {
     if (filter) {
-      setBooks(books?.filter((book) => book.quantity > 10));
+      setBooks(books?.filter((book) => book.quantity > 0));
     }
   }, [filter]);
 
-  const { count } = numOfBooks || {};
-
+  const { totalCount: count, availableCount } = numOfBooks || {};
   const numOfPages = Math.ceil(count / size) || 3;
-
   // console.log(numOfPages);
   const pages = [...Array(numOfPages).keys()];
 
@@ -45,9 +43,17 @@ const AllBooks = () => {
           <h2 className="text-xl sm:text-3xl font-bold ">
             Complete Book Catalog
           </h2>
-          <p className="text-[#808080] ">
-            <span className="font-bold">3</span> Total{" "}
-            <span className="font-bold">2</span> Available
+          <p className="text-[#808080] text-sm ">
+            <span className="mr-4">
+              <span className="font-bold text-black text-lg">
+                {count || "..."}
+              </span>{" "}
+              Total{" "}
+            </span>
+            <span className="font-bold text-black text-lg">
+              {availableCount || "..."}
+            </span>{" "}
+            Available
           </p>
           <div className="flex  gap-4 items-center">
             <div className="hidden md:block h-[30px] w-[30px] rounded-full border border-black"></div>
