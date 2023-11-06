@@ -4,13 +4,19 @@ import SectionHeader from "../../components/shared/SectionHeader";
 import BookCard from "../../components/Card/BookCard";
 import useGet from "../../hooks/useGet";
 import { useParams } from "react-router-dom";
+import BookDetail from "../BookDetail/BookDetail";
 
 const BookByCategory = () => {
   const { category } = useParams();
 
-  const { data: categoryData, isLoading } = useGet(
-    ["BookCategory", category],
+  const { data: categoryData, isLoading: categoryLoad } = useGet(
+    ["CategoryData", category],
     `/category/${category}`
+  );
+
+  const { data: booksData, isLoading: booksLoad } = useGet(
+    ["BooksDataByCategory", category],
+    `/books/${category}`
   );
 
   const {
@@ -56,11 +62,9 @@ const BookByCategory = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-[80%] mx-auto">
-          <BookCard />
-          <BookCard />
-          <BookCard />
-          <BookCard />
-          <BookCard />
+          {booksData?.map((book) => (
+            <BookCard key={book._id} book={book} />
+          ))}
         </div>
       </Container>
     </div>
