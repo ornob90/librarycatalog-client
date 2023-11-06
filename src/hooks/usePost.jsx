@@ -11,14 +11,17 @@ const usePost = (queryKeys, endpoint) => {
       const res = await axiosSecure.post(endpoint, data);
       return res.data;
     },
+
     onSuccess: () => {
-      queryKeys.forEach((queryKey) => {
-        queryClient.invalidateQueries(queryKey);
-      });
+      if (queryKeys) {
+        queryKeys?.forEach((queryKey) => {
+          queryClient.invalidateQueries(queryKey);
+        });
+      }
     },
   });
 
-  return mutateAsync;
+  return { mutateAsync };
 };
 
 export default usePost;

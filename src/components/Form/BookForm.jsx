@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   FormControl,
   InputLabel,
@@ -8,12 +8,45 @@ import {
   TextareaAutosize,
 } from "@mui/material";
 import Button from "../Shared/Button";
+import useGet from "../../hooks/useGet";
+import usePost from "../../hooks/usePost";
+import toast from "react-hot-toast";
 
 const BookForm = () => {
+  const { data: categories, isLoading } = useGet(
+    ["CategoriesName"],
+    "/categories-name"
+  );
+
+  const { mutateAsync: addBook } = usePost(
+    [["BooksDataByCategory", "History"]],
+    "/book"
+  );
+
+  const [category, setCategory] = useState("");
+
+  useEffect(() => {
+    setCategory((categories && categories[0]?.name) || "NA");
+  }, [categories]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+
+    // Extract form values into an object using object destructuring
+    const book = Object.fromEntries(formData);
+
+    await addBook(book);
+    toast.success("Successfully toasted!");
+  };
+
   return (
-    <form className="w-[90%] mx-auto flex flex-col gap-4 lg:grid grid-cols-3 mt-4 -z-1">
+    <form
+      onSubmit={handleSubmit}
+      className="w-[90%]  mx-auto flex flex-col gap-4 lg:grid grid-cols-3 mt-4 -z-1"
+    >
       <TextField
-        value={""}
         required
         name="name"
         id="outlined-basic"
@@ -25,17 +58,19 @@ const BookForm = () => {
       <Select
         labelId="demo-simple-select-label"
         id="demo-simple-select"
-        value={-1}
         label="Age"
+        name="category"
         className="md:col-span-1 bg-white"
+        value={category}
+        onChange={(e) => setCategory(e.target.value)}
       >
-        <MenuItem value={-1}>Category</MenuItem>
-        <MenuItem value={10}>Ten</MenuItem>
-        <MenuItem value={20}>Twenty</MenuItem>
-        <MenuItem value={30}>Thirty</MenuItem>
+        {categories?.map(({ name, _id }) => (
+          <MenuItem key={_id} value={name}>
+            {name}
+          </MenuItem>
+        ))}
       </Select>
       <TextField
-        value={""}
         required
         name="author_name"
         id="outlined-basic"
@@ -44,7 +79,6 @@ const BookForm = () => {
         className="md:col-span-1 md:row-span-1 bg-white"
       />
       <TextField
-        value={""}
         required
         name="quantity"
         id="outlined-basic"
@@ -52,17 +86,27 @@ const BookForm = () => {
         variant="outlined"
         className="md:col-span-1  bg-white"
       />
+
       <TextField
-        value={""}
         required
         name="rating"
         id="outlined-basic"
         label="Rating"
         variant="outlined"
-        className="md:col-span-1  bg-white"
+        className=" md:col-span-1  bg-white"
+        type="number"
+        min={0}
+        max={5}
       />
       <TextField
-        value={""}
+        required
+        name="image"
+        id="outlined-basic"
+        label="Photo URL"
+        variant="outlined"
+        className="md:col-span-3  bg-white"
+      />
+      <TextField
         required
         name="short_description"
         id="outlined-basic"
@@ -71,7 +115,6 @@ const BookForm = () => {
         className="md:col-span-3  bg-white"
       />
       <TextareaAutosize
-        value={""}
         required
         name="content"
         aria-label="minimum height"

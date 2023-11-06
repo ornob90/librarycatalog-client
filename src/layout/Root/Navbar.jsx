@@ -5,6 +5,7 @@ import { useContext, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import AuthContext from "../../Context/AuthContext";
 import { BsFillMoonStarsFill, BsFillSunFill } from "react-icons/bs";
+import toast from "react-hot-toast";
 // import useTheme from "../../Hooks/useTheme";
 
 const Navbar = () => {
@@ -88,7 +89,9 @@ const Navbar = () => {
   const handleSignOut = () => {
     signOutMethod()
       .then(() => {
-        console.log("Signed Out");
+        // console.log("Signed Out");
+
+        toast.success("You have been logged out!!");
         navigate("/");
       })
       .catch((err) => console.log(err.message));

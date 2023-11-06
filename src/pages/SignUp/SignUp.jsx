@@ -1,11 +1,67 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import Button from "../../components/Shared/Button";
 import Container from "../../components/shared/Container";
 import Input from "../../components/shared/Input";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { updateProfile } from "firebase/auth";
+import { NavLink, useLocation } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
+import toast from "react-hot-toast";
 
 const SignUp = () => {
+  const { signUpMethod } = useAuth();
+  const [errorMsg, setErrorMsg] = useState("");
+  const [showPass, setShowPass] = useState(false);
   const navigate = useNavigate();
+  const { state } = useLocation();
+
+  const handleRegister = (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    const name = e.target.name.value;
+    const photo = e.target.photo.value;
+
+    if (password.length < 6) {
+      setErrorMsg("Password Length Must Be More Then 6 Characters!!");
+      return;
+    }
+
+    if (/^[^A-Z]*$/.test(password)) {
+      setErrorMsg("Password must contain atleast one capital letter");
+      return;
+    }
+
+    if (/^[a-zA-Z0-9\s]*$/.test(password)) {
+      setErrorMsg("Password must contain a special character");
+      return;
+    }
+
+    e.target.email.value = "";
+    e.target.password.value = "";
+    e.target.name.value = "";
+    e.target.photo.value = "";
+
+    signUpMethod(email, password)
+      .then((res) => {
+        setErrorMsg("");
+        updateProfile(res.user, {
+          displayName: name,
+          photoURL: photo,
+        });
+        toast.success("You have successfully signed up!");
+        if (state) {
+          navigate(state);
+        } else {
+          navigate("/");
+        }
+      })
+      .catch((err) => {
+        setErrorMsg(err.message);
+        console.log(err);
+      });
+  };
 
   return (
     <div className="text-[#4A4A4A]  min-h-screen flex justify-center items-center lg:grid  lg:grid-cols-5 text-sm ml-[5%]">
@@ -14,11 +70,16 @@ const SignUp = () => {
         <p className="pt-2">
           Start your journey with us and be part of our community
         </p>
-        <form className="flex flex-col gap-4 mt-8">
+        <form onSubmit={handleRegister} className="flex flex-col gap-4 mt-8">
           <div>
             <p className="pb-2">User</p>
 
             <Input name="name" placeholder="Enter your name..." />
+          </div>
+          <div>
+            <p className="pb-2">Photo URL</p>
+
+            <Input name="photo" placeholder="Enter Photo Url..." />
           </div>
           <div>
             <p className="pb-2">Email address</p>
@@ -35,7 +96,7 @@ const SignUp = () => {
               type="password"
             />
           </div>
-
+          {errorMsg && <p className="text-red-600 text-sm">{errorMsg}</p>}
           <div className="flex items-center justify-between">
             <Button className="px-4 py-2 font-medium text-white bg-black rounded-sm">
               Sign Up
