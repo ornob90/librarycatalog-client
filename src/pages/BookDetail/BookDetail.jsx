@@ -3,8 +3,11 @@ import Container from "../../components/shared/Container";
 import { Rating } from "@mui/material";
 import Button from "../../components/Shared/Button";
 import BorrowedForm from "../../components/Form/BorrowedForm";
+import { useNavigate } from "react-router-dom";
 
 const BookDetail = () => {
+  const navigate = useNavigate();
+
   return (
     <Container className="min-h-screen pt-[28%] md:pt-[10%] mb-14">
       <div className="grid grid-cols-1 md:grid-cols-5 gap-10 md:gap-0">
@@ -55,7 +58,10 @@ const BookDetail = () => {
                 <BorrowedForm />
               </dialog>
 
-              <Button className="bg-black w-2/5 text-white font-semibold">
+              <Button
+                onClick={() => navigate("/read/1")}
+                className="bg-black w-2/5 text-white font-semibold"
+              >
                 Read
               </Button>
             </div>

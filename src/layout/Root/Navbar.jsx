@@ -8,6 +8,8 @@ import { BsFillMoonStarsFill, BsFillSunFill } from "react-icons/bs";
 // import useTheme from "../../Hooks/useTheme";
 
 const Navbar = () => {
+  const { pathname } = useLocation();
+
   const navLinks = (
     <>
       <li>
@@ -20,7 +22,16 @@ const Navbar = () => {
               : "font-medium"
           }
         >
-          Home
+          <span
+            className={`${
+              pathname === "/login" || pathname === "/signup"
+                ? "text-black"
+                : ""
+            }`}
+          >
+            H
+          </span>
+          ome
         </NavLink>
       </li>
       <li>
@@ -69,7 +80,6 @@ const Navbar = () => {
   const [hidden, setHidden] = useState(false);
 
   const navigate = useNavigate();
-  const { pathname } = useLocation();
   const { user, signOutMethod } = useAuth();
   const isDark = false;
 
@@ -90,7 +100,7 @@ const Navbar = () => {
         pathname === "/add-book" ? "absolute" : "fixed"
       } top-0 left-0 drop-shadow-[0_0px_5px_rgba(0,0,0,0.12)]  w-full ${
         pathname === "/login" || pathname === "/signup"
-          ? "bg-[#1B2028] text-white"
+          ? "bg-transparent text-white"
           : isDark
           ? "bg-[#121212] text-white"
           : "bg-gray-100  text-black"

@@ -8,7 +8,7 @@ const SignUp = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="text-[#4A4A4A]  min-h-[89vh] flex justify-center items-center lg:grid  lg:grid-cols-5 text-sm ml-[5%]">
+    <div className="text-[#4A4A4A]  min-h-screen flex justify-center items-center lg:grid  lg:grid-cols-5 text-sm ml-[5%]">
       <div className="flex flex-col justify-center col-span-2 mx-auto w-[90%] sm:w-[70%] md:w-[50%] lg:w-3/4 ">
         <h3 className="text-[#151515] text-3xl font-bold">Join Us Today!</h3>
         <p className="pt-2">
