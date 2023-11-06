@@ -68,7 +68,7 @@ const Testimonials = () => {
             </p>
           </div>
           <div className="h-full lg:col-span-2 flex  justify-evenly">
-            <Lottie options={defaultOptions} height={400} width={400} />
+            <Lottie options={defaultOptions} height={250} width={250} />
           </div>
         </Container>
       </div>
