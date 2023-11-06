@@ -7,6 +7,7 @@ import BookByCategory from "../pages/BookByCategory.jsx/BookByCategory";
 import BookDetail from "../pages/BookDetail/BookDetail";
 import Borrowed from "../pages/Borrowed/Borrowed";
 import AllBooks from "../pages/AllBooks/AllBooks";
+import AddBook from "../pages/AddBook/AddBook";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
       {
         path: "/all-books",
         element: <AllBooks />,
+      },
+      {
+        path: "/add-book",
+        element: <AddBook />,
       },
     ],
   },

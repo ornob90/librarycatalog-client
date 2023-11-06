@@ -26,7 +26,7 @@ const Navbar = () => {
       <li>
         <NavLink
           onClick={() => setHidden(!hidden)}
-          to="/add-product"
+          to="/add-book"
           className={({ isActive }) =>
             isActive
               ? "font-medium bg-black text-white py-2 px-3 rounded-sm"
@@ -86,7 +86,9 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 drop-shadow-[0_0px_5px_rgba(0,0,0,0.12)]  w-full ${
+      className={`${
+        pathname === "/add-book" ? "absolute" : "fixed"
+      } top-0 left-0 drop-shadow-[0_0px_5px_rgba(0,0,0,0.12)]  w-full ${
         pathname === "/login" || pathname === "/signup"
           ? "bg-[#1B2028] text-white"
           : isDark
@@ -95,7 +97,7 @@ const Navbar = () => {
       }`}
     >
       <div
-        className={`z-[12] navbar w-[95%] mx-auto max-w-[1440px] flex justify-between items-center  py-4`}
+        className={`z-10 navbar w-[95%] mx-auto max-w-[1440px] flex justify-between items-center  py-4`}
       >
         <div className="">
           <div className="dropdown">
