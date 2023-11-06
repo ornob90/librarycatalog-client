@@ -40,7 +40,7 @@ const Navbar = () => {
       <li>
         <NavLink
           onClick={() => setHidden(!hidden)}
-          to="/cart"
+          to="/all-books"
           className={({ isActive }) =>
             isActive
               ? "font-medium bg-black text-white py-2 px-3 rounded-sm"

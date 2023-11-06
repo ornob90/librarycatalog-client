@@ -6,6 +6,7 @@ import SignUp from "../pages/SignUp/SignUp";
 import BookByCategory from "../pages/BookByCategory.jsx/BookByCategory";
 import BookDetail from "../pages/BookDetail/BookDetail";
 import Borrowed from "../pages/Borrowed/Borrowed";
+import AllBooks from "../pages/AllBooks/AllBooks";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: "/borrowed",
         element: <Borrowed />,
+      },
+      {
+        path: "/all-books",
+        element: <AllBooks />,
       },
     ],
   },
