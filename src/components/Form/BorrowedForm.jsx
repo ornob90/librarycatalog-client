@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import usePost from "../../hooks/usePost";
 import usePut from "../../hooks/usePut";
 import useAuth from "../../hooks/useAuth";
+import getTodayDate from "../../utilities/getTodayDate";
 
 const BorrowedForm = ({ book }) => {
   const [date, setDate] = useState("");
@@ -40,6 +41,7 @@ const BorrowedForm = ({ book }) => {
     const borrowedBook = {
       userName: user?.displayName,
       email: user?.email,
+      borrowedDate: getTodayDate(),
       returnDate: date.replace(/-/g, "/"),
       ...bookInfo,
     };

@@ -4,6 +4,7 @@ import Button from "../../components/Shared/Button";
 import BorrowCard from "../../components/Card/BorrowCard";
 import useAuth from "../../hooks/useAuth";
 import useGet from "../../hooks/useGet";
+import getTodayDate from "../../utilities/getTodayDate";
 
 const Borrowed = () => {
   const { user } = useAuth();
@@ -22,6 +23,8 @@ const Borrowed = () => {
   );
 
   // console.log(borrowedBooks);
+
+  console.log(getTodayDate());
 
   return (
     <Container className="pt-[28%] md:pt-[10%] w-[80%] md:w-[60%]">

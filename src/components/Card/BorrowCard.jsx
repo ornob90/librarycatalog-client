@@ -13,6 +13,7 @@ const BorrowCard = ({ book }) => {
     rating,
     // content,
     returnDate,
+    borrowedDate,
   } = book || {};
 
   return (
@@ -35,7 +36,7 @@ const BorrowCard = ({ book }) => {
         <div className="grid grid-cols-2 gap-2">
           <div className="p-2 bg-black text-white mt-4 text-md">
             <p className="text-gray-200 font-medium pb-1">Borrowed</p>
-            <p className="font-bold">21/2/2023</p>
+            <p className="font-bold">{borrowedDate}</p>
           </div>
           <div className="p-2 bg-black text-white mt-4 text-md">
             <p className="text-gray-200 font-medium pb-1">Return</p>
