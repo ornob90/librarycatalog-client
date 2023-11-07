@@ -6,10 +6,20 @@ import useAuth from "../../hooks/useAuth";
 import AuthContext from "../../Context/AuthContext";
 import { BsFillMoonStarsFill, BsFillSunFill } from "react-icons/bs";
 import toast from "react-hot-toast";
+import useGet from "../../hooks/useGet";
+import useAdmin from "../../hooks/useAdmin";
 // import useTheme from "../../Hooks/useTheme";
 
 const Navbar = () => {
   const { pathname } = useLocation();
+
+  const [hidden, setHidden] = useState(false);
+
+  const navigate = useNavigate();
+  const { user, signOutMethod } = useAuth();
+  const { validAdmin } = useAdmin();
+  const isDark = false;
+  const { data: adminData, isLoading } = useGet(["AdminInfoNav"], "/admin");
 
   const navLinks = (
     <>
@@ -49,7 +59,7 @@ const Navbar = () => {
         </NavLink>
       </li>
 
-      <li>
+      <li className={validAdmin("librarian") ? "" : "hidden"}>
         <NavLink
           onClick={() => setHidden(!hidden)}
           to="/all-books"
@@ -77,12 +87,6 @@ const Navbar = () => {
       </li>
     </>
   );
-
-  const [hidden, setHidden] = useState(false);
-
-  const navigate = useNavigate();
-  const { user, signOutMethod } = useAuth();
-  const isDark = false;
 
   // console.log(user);
 
