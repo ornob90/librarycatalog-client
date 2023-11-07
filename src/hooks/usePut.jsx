@@ -1,21 +1,25 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import useAxios from "./useAxios";
 
-const usePut = (queryKey) => {
+const usePut = (queryKeys, endpoint) => {
   const queryClient = useQueryClient();
   const axiosSecure = useAxios();
 
   const { mutateAsync } = useMutation({
-    mutationFn: async (endpoint, data) => {
+    mutationFn: async (data) => {
       const res = await axiosSecure.put(endpoint, data);
       return res.data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries(queryKey);
+      if (queryKeys) {
+        queryKeys.forEach((queryKey) => {
+          queryClient.invalidateQueries(queryKey);
+        });
+      }
     },
   });
 
-  return mutateAsync;
+  return { mutateAsync };
 };
 
 export default usePut;

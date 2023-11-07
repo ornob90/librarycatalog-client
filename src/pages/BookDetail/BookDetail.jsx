@@ -25,7 +25,7 @@ const BookDetail = () => {
     // content,
   } = book || {};
 
-  console.log(rating);
+  // console.log(rating);
 
   return (
     <Container className="min-h-screen pt-[33%] sm:pt-[28%]   md:pt-[15%] lg:pt-[12%] mb-14">

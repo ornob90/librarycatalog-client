@@ -1,17 +1,73 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "../Shared/Button";
 import toast from "react-hot-toast";
 import usePost from "../../hooks/usePost";
+import usePut from "../../hooks/usePut";
+import useAuth from "../../hooks/useAuth";
 
 const BorrowedForm = ({ book }) => {
   const [date, setDate] = useState("");
+  const { user } = useAuth();
+  const [bookId, setBookId] = useState(null);
 
-  // const {mutateAsync} = usePost("")
+  useEffect(() => {
+    setBookId(book?._id);
+  }, [book?._id]);
+
+  const queryKeys = [["BookDetails", book?._id]];
+
+  const { mutateAsync: addToBorrowed } = usePost(null, "/borrowed");
+
+  const { mutateAsync: updateBookQuantity } = usePut(
+    queryKeys,
+    `/book/${bookId}`
+  );
+
+  // console.log(`/book/${book?._id}`);
 
   // console.log(date.toString());
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async () => {
     // e.preventDefault();
+
+    if (!date) {
+      toast.error("Return date required for borrowing!");
+      return;
+    }
+
+    const { _id, ...bookInfo } = book;
+
+    const borrowedBook = {
+      userName: user?.displayName,
+      email: user?.email,
+      returnDate: date.replace(/-/g, "/"),
+      ...bookInfo,
+    };
+
+    const { quantity } = bookInfo;
+
+    const quantityUpdatedBook = {
+      ...bookInfo,
+      quantity: quantity > 0 ? quantity - 1 : 0,
+    };
+
+    try {
+      await toast.promise(addToBorrowed(borrowedBook), {
+        loading: "Borrowing book...",
+        success: "You have borrowed this book successfully!!",
+        error: "Oops!! Something’s gone wrong!!",
+      });
+
+      await toast.promise(updateBookQuantity(quantityUpdatedBook), {
+        loading: "Updating quantity...",
+        success: "Quantity updated successfully!",
+        error: "Failed to update quantity",
+      });
+    } catch (error) {
+      console.log(error);
+      toast.error("Oops!! Somethings gone wrong!!");
+    }
+
     // toast.success("You have borrowed this book successfully!");
   };
   return (
