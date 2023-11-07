@@ -5,6 +5,7 @@ import AllBookCard from "../../components/Card/AllBookCard";
 import useGet from "../../hooks/useGet";
 import useAuth from "../../hooks/useAuth";
 import CardListSkeleton from "../../components/Skeleton/CardListSkeleton";
+import HeaderSkeleton from "../../components/Skeleton/HeaderSkeleton";
 
 const AllBooks = () => {
   const [page, setPage] = useState(0);
@@ -41,52 +42,60 @@ const AllBooks = () => {
 
   return (
     <Container className="pt-[35%] md:pt-[15%] lg:pt-[10%] mb-16 min-h-[500px]">
-      <div className="flex flex-col md:flex-row justify-center md:justify-between">
-        <div className="flex flex-col gap-4">
-          <h2 className="text-xl sm:text-3xl font-bold ">
-            Complete Book Catalog
-          </h2>
-          <p className="text-[#808080] text-sm ">
-            <span className="mr-4">
-              <span className="font-bold text-black text-lg">
-                {count || "..."}
-              </span>{" "}
-              Total{" "}
-            </span>
-            <span className="font-bold text-black text-lg">
-              {availableCount || "..."}
-            </span>{" "}
-            Available
-          </p>
-          <div className="flex  gap-4 items-center">
-            <div className="hidden md:block h-[30px] w-[30px] rounded-full border border-black">
-              <img
-                src={user?.photoURL}
-                alt=""
-                className="w-full h-full object-cover rounded-full"
-              />
+      {numOfBookLoad ? (
+        <HeaderSkeleton />
+      ) : (
+        <>
+          <div className="flex flex-col md:flex-row justify-center md:justify-between">
+            <div className="flex flex-col gap-4">
+              <h2 className="text-xl sm:text-3xl font-bold ">
+                Complete Book Catalog
+              </h2>
+              <p className="text-[#808080] text-sm ">
+                <span className="mr-4">
+                  <span className="font-bold text-black text-lg">
+                    {count || "..."}
+                  </span>{" "}
+                  Total{" "}
+                </span>
+                <span className="font-bold text-black text-lg">
+                  {availableCount || "..."}
+                </span>{" "}
+                Available
+              </p>
+              <div className="flex  gap-4 items-center">
+                <div className="hidden md:block h-[30px] w-[30px] rounded-full border border-black">
+                  <img
+                    src={user?.photoURL}
+                    alt=""
+                    className="w-full h-full object-cover rounded-full"
+                  />
+                </div>
+                <p className="hidden md:block font-semibold">
+                  {user?.displayName}
+                </p>
+              </div>
             </div>
-            <p className="hidden md:block font-semibold">{user?.displayName}</p>
-          </div>
-        </div>
 
-        <div className="flex justify-end flex-col">
-          <Button
-            onClick={() => setFilter(!filter)}
-            className={`border border-gray-300 px-6 py-1 rounded-lg  duration-300 font-semibold ${
-              filter
-                ? "bg-black text-white hover:bg-white hover:text-black"
-                : "hover:bg-black hover:text-white bg-white text-black"
-            }`}
-          >
-            {filter ? "Filter All" : "Filter Available"}
-          </Button>
-        </div>
-      </div>
-      <hr className="mt-4 border border-gray-300" />
+            <div className="flex justify-end flex-col">
+              <Button
+                onClick={() => setFilter(!filter)}
+                className={`border border-gray-300 px-6 py-1 rounded-lg  duration-300 font-semibold ${
+                  filter
+                    ? "bg-black text-white hover:bg-white hover:text-black"
+                    : "hover:bg-black hover:text-white bg-white text-black"
+                }`}
+              >
+                {filter ? "Filter All" : "Filter Available"}
+              </Button>
+            </div>
+          </div>
+          <hr className="mt-4 border border-gray-300" />
+        </>
+      )}
 
       {booksLoad ? (
-        <CardListSkeleton />
+        <CardListSkeleton col={4} />
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mt-10 gap-4">
           {books?.map((book) => (

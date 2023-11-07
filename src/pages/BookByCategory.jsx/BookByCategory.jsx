@@ -5,6 +5,7 @@ import BookCard from "../../components/Card/BookCard";
 import useGet from "../../hooks/useGet";
 import { useParams } from "react-router-dom";
 import BookDetail from "../BookDetail/BookDetail";
+import CardListSkeleton from "../../components/Skeleton/CardListSkeleton";
 
 const BookByCategory = () => {
   const { category } = useParams();
@@ -61,11 +62,17 @@ const BookByCategory = () => {
           <h1>Discover You Books</h1>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-[80%] mx-auto">
-          {booksData?.map((book) => (
-            <BookCard key={book._id} book={book} />
-          ))}
-        </div>
+        {booksLoad ? (
+          <div className="w-[80%] mx-auto">
+            <CardListSkeleton col={3} />
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-[80%] mx-auto">
+            {booksData?.map((book) => (
+              <BookCard key={book._id} book={book} />
+            ))}
+          </div>
+        )}
       </Container>
     </div>
   );

@@ -37,8 +37,13 @@ const BookCard = ({ book }) => {
           />
         </div>
         <div className="flex items-center justify-between ">
-          <p className="font-bold text-xl">{name}</p>
-          <p className="text-black font-semibold ">{category}</p>
+          <p className="font-bold text-lg">
+            {name.split(" ").slice(0, 4)}{" "}
+            <span className="text-[#808080] text-sm">
+              {name.split(" ").length > 4 ? ". . ." : ""}
+            </span>
+          </p>
+          <p className="text-black font-semibold text-sm ">{category}</p>
         </div>
 
         <Button
