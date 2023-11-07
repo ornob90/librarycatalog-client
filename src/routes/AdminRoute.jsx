@@ -6,11 +6,11 @@ import { Navigate } from "react-router-dom";
 import useAdmin from "../hooks/useAdmin";
 
 const AdminRoute = ({ children }) => {
-  const { validAdmin } = useAdmin();
+  const { validAdmin, adminLoading } = useAdmin();
 
   const { user, loading } = useAuth();
 
-  if (loading) {
+  if (loading || adminLoading) {
     return <Loading />;
   } else if (user && validAdmin("librarian")) {
     return children;

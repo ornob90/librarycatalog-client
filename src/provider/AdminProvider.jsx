@@ -9,11 +9,16 @@ const AdminProvider = ({ children }) => {
   //   const { data: adminData, isLoading } = useGet(["AdminInfo"], "/admin");
 
   const [adminData, setAdminData] = useState([]);
+  const [adminLoading, setAdminLoading] = useState(true);
 
   const { user } = useAuth();
 
   useEffect(() => {
-    axios.get(BASE_URL + "/admin").then((res) => setAdminData(res.data));
+    setAdminLoading(true);
+    axios.get(BASE_URL + "/admin").then((res) => {
+      setAdminData(res.data);
+      setAdminLoading(false);
+    });
   }, []);
 
   const validAdmin = (role) => {
@@ -26,6 +31,7 @@ const AdminProvider = ({ children }) => {
   const adminInfo = {
     adminData,
     validAdmin,
+    adminLoading,
   };
 
   return (
