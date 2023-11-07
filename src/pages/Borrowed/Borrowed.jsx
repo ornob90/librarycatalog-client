@@ -7,13 +7,21 @@ import useGet from "../../hooks/useGet";
 
 const Borrowed = () => {
   const { user } = useAuth();
+  const { email, displayName: userName } = user || {};
 
-  const { data: categories, isLoading } = useGet(
+  const [activeCategory, setActiveCategory] = useState("All");
+
+  const { data: categories, isLoading: categoryLoad } = useGet(
     ["BorrowedCategories"],
     "/categories-name"
   );
 
-  const [activeCategory, setActiveCategory] = useState("All");
+  const { data: borrowedBooks, isLoading: borrowedLoad } = useGet(
+    ["BorrowedBooksByUserEmail", email],
+    `/borrowed?email=${email}`
+  );
+
+  // console.log(borrowedBooks);
 
   return (
     <Container className="pt-[28%] md:pt-[10%] w-[80%] md:w-[60%]">
@@ -63,7 +71,9 @@ const Borrowed = () => {
         <hr className=" border border-gray-200" />
       </div>
       <div className="my-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        <BorrowCard />
+        {borrowedBooks?.map((book) => (
+          <BorrowCard key={book?._id} book={book} />
+        ))}
       </div>
     </Container>
   );
