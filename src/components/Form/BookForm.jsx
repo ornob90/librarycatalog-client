@@ -14,7 +14,11 @@ import toast from "react-hot-toast";
 import usePut from "../../hooks/usePut";
 
 const BookForm = ({ method, bookId = 12, bookToUpdate }) => {
-  const [book, setBook] = useState(bookToUpdate || {});
+  const [book, setBook] = useState({});
+
+  useEffect(() => {
+    setBook(bookToUpdate);
+  }, [bookToUpdate]);
 
   const { data: categories, isLoading } = useGet(
     ["CategoriesName"],
@@ -37,7 +41,7 @@ const BookForm = ({ method, bookId = 12, bookToUpdate }) => {
     setCategory((categories && categories[0]?.name) || "NA");
   }, [categories]);
 
-  const handleChange = (e) => {
+  const handleChange = async (e) => {
     const { name, value } = e.target;
 
     setBook({
@@ -51,31 +55,28 @@ const BookForm = ({ method, bookId = 12, bookToUpdate }) => {
 
     // const formData = new FormData(e.target);
 
-    // Extract form values into an object using object destructuring
     // const book = Object.fromEntries(formData);
 
-    console.log(book);
+    const { _id, ...bookInfo } = book;
+    // console.log(bookInfo);
 
-    // try {
-    //   if (method === "POST") {
-    //     await toast.promise(addBook(book), {
-    //       loading: "Adding book...",
-    //       success: "Book added successfully!!",
-    //       error: "Failed to add book",
-    //     });
-    //   } else if (method === "PUT") {
-    //     await toast.promise(updateBookQuantity(updateBook(book)), {
-    //       loading: "Updating book...",
-    //       success: "Book updated successfully!",
-    //       error: "Failed to update book",
-    //     });
-    //   }
-    // } catch (error) {
-    //   toast.error("Oops!! Somethings gone wrong!!");
-    // }
-
-    // await addBook(book);
-    // toast.success("Successfully toasted!");
+    try {
+      if (method.toLowerCase() === "post") {
+        await toast.promise(addBook(bookInfo), {
+          loading: "Adding book...",
+          success: "Book added successfully!!",
+          error: "Failed to add book",
+        });
+      } else if (method.toLowerCase() === "put") {
+        await toast.promise(updateBook(bookInfo), {
+          loading: "Updating book...",
+          success: "Book updated successfully!",
+          error: "Failed to update book",
+        });
+      }
+    } catch (error) {
+      toast.error("Oops!! Somethings gone wrong!!");
+    }
   };
 
   return (

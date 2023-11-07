@@ -13,6 +13,8 @@ const UpdateBook = () => {
     `/book/${id}`
   );
 
+  //   console.log(bookToUpdate);
+
   return (
     <Container className="w-[60%] pt-[28%] md:pt-[15%] lg:pt-[10%]">
       <UpdateAddHeader />

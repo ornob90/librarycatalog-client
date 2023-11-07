@@ -19,7 +19,7 @@ const AdminProvider = ({ children }) => {
       setAdminData(res.data);
       setAdminLoading(false);
     });
-  }, []);
+  }, [user]);
 
   const validAdmin = (role) => {
     // console.log(user?.email);
