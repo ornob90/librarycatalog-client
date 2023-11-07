@@ -4,6 +4,7 @@ import Button from "../../components/Shared/Button";
 import AllBookCard from "../../components/Card/AllBookCard";
 import useGet from "../../hooks/useGet";
 import useAuth from "../../hooks/useAuth";
+import CardListSkeleton from "../../components/Skeleton/CardListSkeleton";
 
 const AllBooks = () => {
   const [page, setPage] = useState(0);
@@ -39,7 +40,7 @@ const AllBooks = () => {
   const pages = [...Array(numOfPages).keys()];
 
   return (
-    <Container className="pt-[35%] md:pt-[15%] lg:pt-[10%] mb-16">
+    <Container className="pt-[35%] md:pt-[15%] lg:pt-[10%] mb-16 min-h-[500px]">
       <div className="flex flex-col md:flex-row justify-center md:justify-between">
         <div className="flex flex-col gap-4">
           <h2 className="text-xl sm:text-3xl font-bold ">
@@ -84,11 +85,16 @@ const AllBooks = () => {
       </div>
       <hr className="mt-4 border border-gray-300" />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mt-10 gap-4">
-        {books?.map((book) => (
-          <AllBookCard key={book._id} book={book} />
-        ))}
-      </div>
+      {booksLoad ? (
+        <CardListSkeleton />
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mt-10 gap-4">
+          {books?.map((book) => (
+            <AllBookCard key={book._id} book={book} />
+          ))}
+        </div>
+      )}
+
       <div className="flex justify-center items-center gap-6 sm:gap-8 mt-20">
         {pages?.map((value) => (
           <div

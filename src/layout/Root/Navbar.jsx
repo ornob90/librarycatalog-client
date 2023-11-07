@@ -20,6 +20,8 @@ const Navbar = () => {
 
   const navigate = useNavigate();
   const { user, signOutMethod } = useAuth();
+  console.log(user?.photoURL);
+
   const { validAdmin } = useAdmin();
   const isDark = false;
   const { data: adminData, isLoading } = useGet(["AdminInfoNav"], "/admin");
@@ -62,7 +64,7 @@ const Navbar = () => {
         </NavLink>
       </li>
 
-      <li className={validAdmin("librarian") ? "" : "hidden"}>
+      <li>
         <NavLink
           onClick={() => setHidden(!hidden)}
           to="/all-books"

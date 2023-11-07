@@ -57,25 +57,31 @@ const router = createBrowserRouter([
       {
         path: "/all-books",
         element: (
-          <AdminRoute>
-            <AllBooks />
-          </AdminRoute>
+          <PrivateRoute>
+            <AdminRoute>
+              <AllBooks />
+            </AdminRoute>
+          </PrivateRoute>
         ),
       },
       {
         path: "/add-book",
         element: (
-          <AdminRoute>
-            <AddBook />
-          </AdminRoute>
+          <PrivateRoute>
+            <AdminRoute>
+              <AddBook />
+            </AdminRoute>
+          </PrivateRoute>
         ),
       },
       {
         path: "/update-book/:id",
         element: (
-          <AdminRoute>
-            <UpdateBook />
-          </AdminRoute>
+          <PrivateRoute>
+            <AdminRoute>
+              <UpdateBook />
+            </AdminRoute>
+          </PrivateRoute>
         ),
       },
       {
