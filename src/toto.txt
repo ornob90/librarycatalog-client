@@ -14,3 +14,4 @@
 14. Error page
 15. Jwt authenticate
 16. Private route setup ------> Done
+17. disable booking button if quantity 0
