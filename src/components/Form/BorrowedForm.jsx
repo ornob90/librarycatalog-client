@@ -43,6 +43,7 @@ const BorrowedForm = ({ book }) => {
       email: user?.email,
       borrowedDate: getTodayDate(),
       returnDate: date.replace(/-/g, "/"),
+      bookId: book?._id,
       ...bookInfo,
     };
 

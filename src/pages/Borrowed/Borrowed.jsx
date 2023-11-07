@@ -24,8 +24,6 @@ const Borrowed = () => {
 
   // console.log(borrowedBooks);
 
-  console.log(getTodayDate());
-
   return (
     <Container className="pt-[28%] md:pt-[10%] w-[80%] md:w-[60%]">
       <div className="flex flex-row justify-center md:justify-between items-start w-full">
