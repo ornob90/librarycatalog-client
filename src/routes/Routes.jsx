@@ -10,6 +10,7 @@ import AllBooks from "../pages/AllBooks/AllBooks";
 import AddBook from "../pages/AddBook/AddBook";
 import Read from "../pages/Read/Read";
 import PrivateRoute from "./PrivateRoute";
+import AdminRoute from "./AdminRoute";
 
 const router = createBrowserRouter([
   {
@@ -55,17 +56,17 @@ const router = createBrowserRouter([
       {
         path: "/all-books",
         element: (
-          <PrivateRoute>
+          <AdminRoute>
             <AllBooks />
-          </PrivateRoute>
+          </AdminRoute>
         ),
       },
       {
         path: "/add-book",
         element: (
-          <PrivateRoute>
+          <AdminRoute>
             <AddBook />
-          </PrivateRoute>
+          </AdminRoute>
         ),
       },
       {

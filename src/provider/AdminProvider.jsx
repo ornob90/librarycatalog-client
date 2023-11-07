@@ -8,7 +8,7 @@ import BASE_URL from "../api/api";
 const AdminProvider = ({ children }) => {
   //   const { data: adminData, isLoading } = useGet(["AdminInfo"], "/admin");
 
-  const [adminData, setAdminData] = useState("");
+  const [adminData, setAdminData] = useState([]);
 
   const { user } = useAuth();
 
@@ -17,6 +17,7 @@ const AdminProvider = ({ children }) => {
   }, []);
 
   const validAdmin = (role) => {
+    // console.log(user?.email);
     return adminData?.find(
       (admin) => admin?.email === user?.email && admin?.role === role
     );

@@ -12,11 +12,11 @@ const AdminRoute = ({ children }) => {
 
   if (loading) {
     return <Loading />;
-  } else if (validAdmin()) {
+  } else if (user && validAdmin("librarian")) {
     return children;
   }
 
-  return <Navigate to="/login"></Navigate>;
+  return <Navigate to="/"></Navigate>;
 };
 
 export default AdminRoute;
