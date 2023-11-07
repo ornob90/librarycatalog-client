@@ -158,7 +158,11 @@ const Navbar = () => {
               {navLinks}
             </ul>
           </div>
-          <NavLink className=" normal-case text-md sm:text-lg md:text-2xl font-bold w-max flex gap-2 items-center">
+
+          <NavLink
+            to="/"
+            className=" normal-case text-md sm:text-lg md:text-2xl font-bold w-max flex gap-2 items-center"
+          >
             <div className=" w-[25px] h-[25px] md:w-[40px] md:h-[30px]">
               <img
                 src="/logo/logo.jpg"
@@ -166,7 +170,15 @@ const Navbar = () => {
                 className="w-full h-full object-cover rounded-sm"
               />
             </div>
-            <p>LibraryCatalog</p>
+            <p
+              className={`${
+                pathname === "/login" || pathname === "/signup"
+                  ? "text-black"
+                  : ""
+              }`}
+            >
+              LibraryCatalog
+            </p>
           </NavLink>
         </div>
         <div className="hidden lg:flex">

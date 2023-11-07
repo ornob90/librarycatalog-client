@@ -8,6 +8,8 @@ import { updateProfile } from "firebase/auth";
 import { NavLink, useLocation } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
+import signupAnimation from "../../assets/animation/book2.json";
+import Lottie from "react-lottie";
 
 const SignUp = () => {
   const { signUpMethod } = useAuth();
@@ -15,6 +17,15 @@ const SignUp = () => {
   const [showPass, setShowPass] = useState(false);
   const navigate = useNavigate();
   const { state } = useLocation();
+
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: signupAnimation,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -110,7 +121,9 @@ const SignUp = () => {
           </div>
         </form>
       </div>
-      <div className="hidden h-full col-span-3 lg:block lg:bg-black"></div>
+      <div className="hidden h-full col-span-3 lg:flex lg:bg-black justify-center items-center">
+        <Lottie options={defaultOptions} height={450} width={350} />
+      </div>
     </div>
   );
 };

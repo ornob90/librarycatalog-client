@@ -8,6 +8,8 @@ import Swal from "sweetalert2";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
+import loginAnimation from "../../assets/animation/book.json";
+import Lottie from "react-lottie";
 
 const Login = () => {
   const { signInMethod, googleSignInMethod } = useAuth();
@@ -16,6 +18,15 @@ const Login = () => {
   const [errorMsg, setErrorMsg] = useState("");
   const { state } = useLocation();
   const navigate = useNavigate();
+
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: loginAnimation,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
 
   const handleSignIn = (e) => {
     e.preventDefault();
@@ -106,7 +117,9 @@ const Login = () => {
           Sign In With Google
         </div>
       </div>
-      <div className="hidden h-full col-span-3 lg:block lg:bg-black"></div>
+      <div className="hidden h-full col-span-3 lg:flex lg:bg-black  justify-center items-center ">
+        <Lottie options={defaultOptions} height={500} width={300} />
+      </div>
     </div>
   );
 };
