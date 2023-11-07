@@ -9,6 +9,8 @@ import {
 import React, { useEffect, useState } from "react";
 import auth, { googleProvider } from "../Firebase/firebase.config";
 import AuthContext from "../Context/AuthContext";
+import BASE_URL from "../api/api";
+import axios from "axios";
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -36,11 +38,29 @@ const AuthProvider = ({ children }) => {
     return signInWithPopup(auth, googleProvider);
   };
 
-  useEffect((curUser) => {
-    onAuthStateChanged(auth, (curUser) => {
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (curUser) => {
+      const userEmail = curUser?.email;
+
+      const loggedUser = { email: userEmail };
+
       setUser(curUser);
       setLoading(false);
+
+      if (curUser) {
+        axios
+          .post(BASE_URL + "/jwt", loggedUser, {
+            withCredentials: true,
+          })
+          .then((res) => {
+            console.log("token response", res.data);
+          });
+      }
     });
+
+    return () => {
+      unsubscribe();
+    };
   }, []);
 
   const authInfo = {

@@ -92,6 +92,7 @@ const AllBooks = () => {
       <div className="flex justify-center items-center gap-6 sm:gap-8 mt-20">
         {pages?.map((value) => (
           <div
+            key={value}
             onClick={() => setPage(value)}
             className={`w-[25px] sm:w-[30px] h-[25px] sm:h-[30px] border border-black rounded-full flex justify-center items-center cursor-pointer hover:bg-black hover:text-white duration-300 ${
               page === value
