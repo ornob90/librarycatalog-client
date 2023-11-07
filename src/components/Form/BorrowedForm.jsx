@@ -1,16 +1,22 @@
 import React, { useState } from "react";
 import Button from "../Shared/Button";
+import toast from "react-hot-toast";
+import usePost from "../../hooks/usePost";
 
-const BorrowedForm = () => {
+const BorrowedForm = ({ book }) => {
   const [date, setDate] = useState("");
 
-  console.log(date.toString());
+  // const {mutateAsync} = usePost("")
+
+  // console.log(date.toString());
 
   const handleSubmit = (e) => {
     // e.preventDefault();
+    // toast.success("You have borrowed this book successfully!");
   };
   return (
     <form
+      onSubmit={handleSubmit}
       method="dialog"
       className="w-[90%] sm:w-[400px] lg:w-[500px]  bg-white flex flex-col gap-5 p-5 "
     >

@@ -1,20 +1,19 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import useAxios from "./useAxios";
 
-const usePost = (queryKeys, endpoint) => {
+const usePatch = (queryKeys, endpoint) => {
   const queryClient = useQueryClient();
 
   const axiosSecure = useAxios();
 
   const { mutateAsync } = useMutation({
     mutationFn: async (data) => {
-      const res = await axiosSecure.post(endpoint, data);
+      const res = await axiosSecure.patch(endpoint, data);
       return res?.data;
     },
-
     onSuccess: () => {
       if (queryKeys) {
-        queryKeys?.forEach((queryKey) => {
+        queryKeys.forEach((queryKey) => {
           queryClient.invalidateQueries(queryKey);
         });
       }
@@ -24,4 +23,4 @@ const usePost = (queryKeys, endpoint) => {
   return { mutateAsync };
 };
 
-export default usePost;
+export default usePatch;

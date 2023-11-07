@@ -25,6 +25,8 @@ const BookDetail = () => {
     // content,
   } = book || {};
 
+  console.log(rating);
+
   return (
     <Container className="min-h-screen pt-[33%] sm:pt-[28%]   md:pt-[15%] lg:pt-[12%] mb-14">
       <div className="grid grid-cols-1 md:grid-cols-5 gap-10 md:gap-0">
@@ -54,7 +56,7 @@ const BookDetail = () => {
             <div className="flex justify-between items-center">
               <Rating
                 name="half-rating-read"
-                value={rating}
+                value={parseInt(rating)}
                 precision={0.5}
                 readOnly
               />
@@ -70,7 +72,7 @@ const BookDetail = () => {
                 Borrow
               </Button>
               <dialog id="my_modal_1" className="modal">
-                <BorrowedForm />
+                <BorrowedForm book={book} />
               </dialog>
 
               <Button

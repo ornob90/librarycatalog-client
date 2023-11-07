@@ -1,0 +1,16 @@
+1. Borrow data add. [User email and name]
+2. Authentication check ------> Done
+3. Update book page 
+4. Logo
+5. Dynamic user dp in every page where it needs
+6. After book borrow reduce ta quantity [can't be zero]
+7. Dynamic borrowed page by user email
+8. Librarian role
+9. After return increase quantity
+10. Animation in login and sign up lage
+11. Axios interceptor
+12. Dark mode
+13. Skeleton or loading
+14. Error page
+15. Jwt authenticate
+16. Private route setup
