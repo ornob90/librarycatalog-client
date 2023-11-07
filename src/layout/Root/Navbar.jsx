@@ -13,6 +13,9 @@ import useAdmin from "../../hooks/useAdmin";
 const Navbar = () => {
   const { pathname } = useLocation();
 
+  const updateBook = pathname.split("/")[1];
+  // console.log(pathname.split("/")[1], updateBook);
+
   const [hidden, setHidden] = useState(false);
 
   const navigate = useNavigate();
@@ -104,7 +107,11 @@ const Navbar = () => {
   return (
     <nav
       className={`${
-        pathname === "/add-book" ? "absolute" : "fixed"
+        pathname === "/add-book"
+          ? "absolute"
+          : updateBook === "update-book"
+          ? "absolute"
+          : "fixed"
       } top-0 left-0 drop-shadow-[0_0px_5px_rgba(0,0,0,0.12)]  w-full ${
         pathname === "/login" || pathname === "/signup"
           ? "bg-transparent text-white"

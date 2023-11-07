@@ -11,6 +11,7 @@ import AddBook from "../pages/AddBook/AddBook";
 import Read from "../pages/Read/Read";
 import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
+import UpdateBook from "../pages/UpdateBook/UpdateBook";
 
 const router = createBrowserRouter([
   {
@@ -66,6 +67,14 @@ const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <AddBook />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/update-book/:id",
+        element: (
+          <AdminRoute>
+            <UpdateBook />
           </AdminRoute>
         ),
       },

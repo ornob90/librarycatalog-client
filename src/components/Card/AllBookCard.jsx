@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "../Shared/Button";
 import { Rating } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const AllBookCard = ({ book }) => {
   const {
@@ -14,6 +15,8 @@ const AllBookCard = ({ book }) => {
     rating,
     // content,
   } = book || {};
+
+  const navigate = useNavigate();
 
   return (
     <div className="flex flex-col p-4  border shadow-sm rounded-lg justify-between">
@@ -32,7 +35,11 @@ const AllBookCard = ({ book }) => {
           <p>{author_name}</p>
         </div>
         <Rating name="half-rating-read" value={4.5} precision={0.5} readOnly />
-        <Button className="border border-black py-2 mt-2 bg-black text-white hover:bg-white hover:text-black">
+        <Button
+          type="button"
+          onClick={() => navigate(`/update-book/${_id}`)}
+          className="border border-black py-2 mt-2 bg-black text-white hover:bg-white hover:text-black"
+        >
           Update
         </Button>
       </div>
