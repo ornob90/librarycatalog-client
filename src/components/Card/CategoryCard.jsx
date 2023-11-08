@@ -8,7 +8,7 @@ const CategoryCard = ({ category }) => {
 
   return (
     <div
-      className="bg-gray-100 h-[300px] rounded-lg shadow-lg active:scale-95 duration-300 "
+      className="bg-gray-100 h-[300px] rounded-lg shadow-lg hover:shadow:sm duration-300"
       onClick={() => navigate(`/books/${name}`)}
     >
       <img

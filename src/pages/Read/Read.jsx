@@ -1,7 +1,26 @@
 import React from "react";
 import Container from "../../components/shared/Container";
+import { containerClasses } from "@mui/material";
+import useGet from "../../hooks/useGet";
+import { useParams } from "react-router-dom";
 
 const Read = () => {
+  const { id } = useParams();
+
+  const { data: book, isLoading } = useGet(["BookDetails", id], `/book/${id}`);
+
+  const {
+    _id,
+    image,
+    name,
+    quantity,
+    author_name,
+    category,
+    short_description,
+    rating,
+    content,
+  } = book || {};
+
   return (
     <div className="min-h-screen mb-20">
       <div className=" lg:h-[400px] bg-gray-100 pt-[30%] sm:pt-[20%] md:pt-[15%] lg:pt-[10%]">
@@ -15,38 +34,20 @@ const Read = () => {
               universe in every book
             </p>
             <h1 className="font-bold text-3xl sm:text-2xl md:text-3xl lg:text-4xl ">
-              A single thread
+              {name}
             </h1>
             <p className="text-[#808080] text-[13px] w-3/4 mx-auto md:m-0 md:w-3/4 text-center md:text-left">
-              "Discover a vast catalog of organized reads. Find diverse
-              literature at your fingertips. "
+              "{short_description}"
             </p>
           </div>
 
           <div className="h-full lg:col-span-2 flex  justify-center items-center">
-            <img
-              src="https://m.media-amazon.com/images/I/81XCRGlex6L._AC_UF1000,1000_QL80_.jpg"
-              alt=""
-              className=" w-[35%]"
-            />
+            <img src={image} alt="" className=" w-[35%]" />
           </div>
         </Container>
       </div>
       <Container className=" md:w-[80%] lg:w-[60%] mt-10 ">
-        <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quos quaerat
-          vel numquam eveniet a tenetur nam quae, ipsum sapiente consequatur?
-          Error ut blanditiis commodi itaque impedit eos pariatur placeat sed
-          vitae quaerat, soluta provident adipisci, animi nisi nobis aut aliquam
-          minima autem? Possimus ipsa ducimus consequatur laudantium sed.
-          Repellat beatae, quae consectetur eaque repellendus possimus
-          doloremque magni ea sequi commodi accusantium soluta, incidunt aperiam
-          amet inventore assumenda provident, nam tempora saepe magnam! Qui
-          consequuntur vero culpa tenetur fugiat numquam iure dignissimos
-          voluptatum unde quod cum dolorum, fuga ea ipsam labore asperiores,
-          nobis sit, dolorem corporis ratione laborum aperiam molestiae
-          possimus!
-        </p>
+        <p>{content}</p>
       </Container>
     </div>
   );

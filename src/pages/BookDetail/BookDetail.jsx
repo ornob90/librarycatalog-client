@@ -64,6 +64,7 @@ const BookDetail = () => {
             </div>
             <div className="flex justify-between w-full">
               <Button
+                disabled={quantity === 0}
                 onClick={() =>
                   document.getElementById("my_modal_1").showModal()
                 }
@@ -76,7 +77,7 @@ const BookDetail = () => {
               </dialog>
 
               <Button
-                onClick={() => navigate("/read/1")}
+                onClick={() => navigate(`/read/${id}`)}
                 className="bg-black w-2/5 text-white font-semibold"
               >
                 Read
