@@ -10,6 +10,7 @@ import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 import signupAnimation from "../../assets/animation/book2.json";
 import Lottie from "react-lottie";
+import Loading from "../../components/shared/Loading";
 
 const SignUp = () => {
   const { signUpMethod } = useAuth();
@@ -17,6 +18,7 @@ const SignUp = () => {
   const [showPass, setShowPass] = useState(false);
   const navigate = useNavigate();
   const { state } = useLocation();
+  const [loading, setLoading] = useState(false);
 
   const defaultOptions = {
     loop: true,
@@ -48,6 +50,7 @@ const SignUp = () => {
       setErrorMsg("Password must contain a special character");
       return;
     }
+    setLoading(true);
 
     e.target.email.value = "";
     e.target.password.value = "";
@@ -61,14 +64,17 @@ const SignUp = () => {
           displayName: name,
           photoURL: photo,
         });
-        toast.success("You have successfully signed up!");
+
         if (state) {
           navigate(state);
         } else {
           navigate("/");
         }
+        setLoading(false);
+        toast.success("You have successfully signed up!");
       })
       .catch((err) => {
+        setLoading(false);
         setErrorMsg(err.message);
         console.log(err);
       });
@@ -124,6 +130,8 @@ const SignUp = () => {
       <div className="hidden h-full col-span-3 lg:flex lg:bg-black justify-center items-center">
         <Lottie options={defaultOptions} height={450} width={350} />
       </div>
+
+      {loading && <Loading />}
     </div>
   );
 };

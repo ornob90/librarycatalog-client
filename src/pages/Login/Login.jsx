@@ -10,11 +10,13 @@ import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 import loginAnimation from "../../assets/animation/book.json";
 import Lottie from "react-lottie";
+import Loading from "../../components/shared/Loading";
 
 const Login = () => {
   const { signInMethod, googleSignInMethod } = useAuth();
 
   const [showPass, setShowPass] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const { state } = useLocation();
   const navigate = useNavigate();
@@ -30,6 +32,9 @@ const Login = () => {
 
   const handleSignIn = (e) => {
     e.preventDefault();
+
+    setLoading(true);
+
     const email = e.target.email.value;
     const password = e.target.password.value;
     e.target.email.value = "";
@@ -45,14 +50,19 @@ const Login = () => {
         } else {
           navigate("/");
         }
+
+        setLoading(false);
       })
       .catch((err) => {
+        setLoading(false);
         setErrorMsg(err.message);
         console.log(err.message);
       });
   };
 
   const handleGoogleSignIn = () => {
+    setLoading(true);
+
     googleSignInMethod()
       .then((res) => {
         setErrorMsg("");
@@ -62,8 +72,10 @@ const Login = () => {
         } else {
           navigate("/");
         }
+        setLoading(false);
       })
       .catch((err) => {
+        setLoading(false);
         setErrorMsg(err.message);
         console.log(err);
       });
@@ -120,6 +132,7 @@ const Login = () => {
       <div className="hidden h-full col-span-3 lg:flex lg:bg-black  justify-center items-center ">
         <Lottie options={defaultOptions} height={500} width={300} />
       </div>
+      {loading && <Loading />}
     </div>
   );
 };
