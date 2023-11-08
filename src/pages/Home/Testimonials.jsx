@@ -95,7 +95,7 @@ const Testimonials = () => {
           {testimonials.map(({ id, name, review, bio, img }) => (
             <div
               key={id}
-              className="bg-black text-white p-6 flex flex-col gap-4 rounded-lg dark:bg-dark-text dark:text-dark-mode"
+              className="bg-black text-white p-6 flex flex-col gap-4 rounded-lg dark:bg-gray-200 dark:text-dark-mode"
             >
               <p className="font-bold text-4xl">"</p>
               <p className="text-lg">{review}</p>
@@ -106,7 +106,7 @@ const Testimonials = () => {
                   </p>
                   <p className="text-sm text-[#808080]">{bio}</p>
                 </div>
-                <div className="w-[40px] h-[40px] border-2 border-white rounded-full">
+                <div className="w-[40px] h-[40px] border-2 border-white dark:border-dark-mode rounded-full">
                   <img
                     src={img}
                     alt=""

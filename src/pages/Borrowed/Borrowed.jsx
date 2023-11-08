@@ -87,7 +87,7 @@ const Borrowed = () => {
         </div>
         <hr className=" border border-gray-200" />
       </div>
-      <div className="my-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+      <div className="my-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
         {booksToShow?.map((book) => (
           <BorrowCard key={book?._id} book={book} />
         ))}

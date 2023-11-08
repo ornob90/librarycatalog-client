@@ -8,6 +8,7 @@ import { BsFillMoonStarsFill, BsFillSunFill } from "react-icons/bs";
 import toast from "react-hot-toast";
 import useGet from "../../hooks/useGet";
 import useAdmin from "../../hooks/useAdmin";
+import logo from "../../assets/logo/logo.png";
 
 // import useTheme from "../../Hooks/useTheme";
 
@@ -45,7 +46,7 @@ const Navbar = () => {
           <span
             className={`${
               pathname === "/login" || pathname === "/signup"
-                ? "text-black"
+                ? "text-black dark:text-dark-text"
                 : ""
             }`}
           >
@@ -203,11 +204,11 @@ const Navbar = () => {
             to="/"
             className=" normal-case text-md sm:text-lg md:text-2xl font-bold w-max flex gap-2 items-center"
           >
-            <div className=" w-[25px] h-[25px] md:w-[40px] md:h-[30px]">
+            <div className=" w-[25px] h-[25px] md:w-[45px] md:h-[45px] ">
               <img
-                src="/logo/logo.jpg"
+                src={logo}
                 alt=""
-                className="w-full h-full object-cover rounded-sm"
+                className="h-full  object-contain rounded-sm"
               />
             </div>
             <p
@@ -261,10 +262,10 @@ const Navbar = () => {
             </div>
           </div>
         ) : (
-          <div className="flex gap-2">
+          <div className="flex gap-4">
             <Button
               onClick={() => navigate("/login")}
-              className="bg-black text-white py-1 px-2 md:py-2 md:px-5 rounded-sm text-sm md:text-base"
+              className="bg-black text-white py-1 px-2 md:py-2 md:px-5 rounded-sm text-sm md:text-base dark:bg-dark-text dark:text-dark-mode"
             >
               Login
             </Button>

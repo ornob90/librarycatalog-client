@@ -5,11 +5,28 @@ import usePost from "../../hooks/usePost";
 import usePut from "../../hooks/usePut";
 import useAuth from "../../hooks/useAuth";
 import getTodayDate from "../../utilities/getTodayDate";
+import useGet from "../../hooks/useGet";
 
 const BorrowedForm = ({ book }) => {
   const [date, setDate] = useState("");
   const { user } = useAuth();
+  const { email } = user;
   const [bookId, setBookId] = useState(null);
+  const [alreadyBorrowed, setAlreadyBorrowed] = useState(false);
+
+  const { data: borrowedBooks, isLoading: borrowedLoad } = useGet(
+    ["BorrowedBooksByUserEmail", email],
+    `/borrowed?email=${email}`
+  );
+
+  useEffect(() => {
+    setAlreadyBorrowed(
+      borrowedBooks?.find(
+        (borrowBook) =>
+          borrowBook?.email === email && borrowBook.bookId === book?._id
+      )
+    );
+  }, [borrowedBooks, email, book?._id]);
 
   useEffect(() => {
     setBookId(book?._id);
@@ -30,6 +47,11 @@ const BorrowedForm = ({ book }) => {
 
   const handleSubmit = async () => {
     // e.preventDefault();
+
+    if (alreadyBorrowed) {
+      toast.error("You already borrowed the book!!");
+      return;
+    }
 
     if (!date) {
       toast.error("Return date required for borrowing!");

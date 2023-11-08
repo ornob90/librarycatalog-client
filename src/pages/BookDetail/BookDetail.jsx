@@ -5,6 +5,7 @@ import Button from "../../components/Shared/Button";
 import BorrowedForm from "../../components/Form/BorrowedForm";
 import { useNavigate, useParams } from "react-router-dom";
 import useGet from "../../hooks/useGet";
+import DetailSkeleton from "../../components/Skeleton/DetailSkeleton";
 
 const BookDetail = () => {
   const navigate = useNavigate();
@@ -29,7 +30,7 @@ const BookDetail = () => {
 
   return (
     <Container className="min-h-screen pt-[33%] sm:pt-[28%]   md:pt-[15%] lg:pt-[12%] mb-14">
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-10 md:gap-0">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-10 md:gap-0 mb-10">
         <div className="md:col-span-3 ">
           <img
             src={image}
@@ -86,6 +87,8 @@ const BookDetail = () => {
           </div>
         </div>
       </div>
+
+      <DetailSkeleton />
     </Container>
   );
 };

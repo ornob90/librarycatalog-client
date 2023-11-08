@@ -72,7 +72,7 @@ const BorrowCard = ({ book }) => {
   };
 
   return (
-    <div className="flex flex-col p-4  border shadow-sm rounded-lg">
+    <div className="flex flex-col p-4  border shadow-sm ">
       <div className=" flex justify-center items-center">
         <img src={image} alt="" className="h-[300px] md:h-[200px]" />
       </div>

@@ -4,6 +4,7 @@ import useGet from "../hooks/useGet";
 import useAuth from "../hooks/useAuth";
 import axios from "axios";
 import BASE_URL from "../api/api";
+import { setLogLevel } from "firebase/app";
 
 const AdminProvider = ({ children }) => {
   //   const { data: adminData, isLoading } = useGet(["AdminInfo"], "/admin");
@@ -15,10 +16,16 @@ const AdminProvider = ({ children }) => {
 
   useEffect(() => {
     setAdminLoading(true);
-    axios.get(BASE_URL + "/admin").then((res) => {
-      setAdminData(res.data);
-      setAdminLoading(false);
-    });
+    axios
+      .get(BASE_URL + "/admin", { withCredentials: true })
+      .then((res) => {
+        setAdminData(res.data);
+        setAdminLoading(false);
+      })
+      .catch((err) => {
+        console.log(err.message);
+        setAdminLoading(false);
+      });
   }, [user]);
 
   const validAdmin = (role) => {

@@ -43,7 +43,6 @@ const Login = () => {
     signInMethod(email, password)
       .then((res) => {
         setErrorMsg("");
-        toast.success("You have successfully signed in!!");
 
         if (state) {
           navigate(state);
@@ -52,6 +51,7 @@ const Login = () => {
         }
 
         setLoading(false);
+        toast.success("You have successfully signed in!!");
       })
       .catch((err) => {
         setLoading(false);
@@ -130,7 +130,7 @@ const Login = () => {
         </div>
       </div>
       <div className="hidden h-full col-span-3 lg:flex lg:bg-black  justify-center items-center ">
-        <Lottie options={defaultOptions} height={500} width={300} />
+        <Lottie options={defaultOptions} height={450} width={300} />
       </div>
       {loading && <Loading />}
     </div>
