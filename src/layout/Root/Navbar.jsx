@@ -1,7 +1,7 @@
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 
 import Button from "../../components/Shared/Button";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import AuthContext from "../../Context/AuthContext";
 import { BsFillMoonStarsFill, BsFillSunFill } from "react-icons/bs";
@@ -16,6 +16,16 @@ const Navbar = () => {
   const { pathname } = useLocation();
 
   const [theme, setTheme] = useState("light");
+  const html = document.documentElement;
+
+  useEffect(() => {
+    const theme = localStorage.getItem("theme") || "light";
+
+    if (theme) {
+      setTheme(theme);
+      html.classList.add(theme);
+    }
+  }, []);
 
   const updateBook = pathname.split("/")[1];
 
@@ -103,15 +113,16 @@ const Navbar = () => {
 
   const handleTheme = () => {
     // console.log("clicked");
-    const html = document.documentElement;
 
     if (theme === "light") {
       html.classList.remove("light");
       html.classList.add("dark");
+      localStorage.setItem("theme", "dark");
       setTheme("dark");
     } else {
       html.classList.remove("dark");
       html.classList.add("light");
+      localStorage.setItem("theme", "light");
       setTheme("light");
     }
   };

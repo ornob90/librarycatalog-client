@@ -77,8 +77,10 @@ const BorrowCard = ({ book, handleDuplicateBorrow }) => {
         <img src={image} alt="" className="h-[300px] md:h-[200px]" />
       </div>
       <div className="mt-8 flex flex-col gap-2">
-        <p className="text-[#808080] text-sm">{category}</p>
-        <h3 className="font-bold text-lg">
+        <p className="text-[#808080] text-sm dark:text-dark-accent">
+          {category}
+        </p>
+        <h3 className="font-bold text-lg dark:text-dark-text">
           {name.split(" ").slice(0, 4)}{" "}
           <span className="text-[#808080] text-sm">
             {name.split(" ").length > 4 ? ". . ." : ""}
@@ -97,7 +99,7 @@ const BorrowCard = ({ book, handleDuplicateBorrow }) => {
         <Button
           type="button"
           onClick={handleReturn}
-          className="border border-black py-2 mt-2 hover:bg-black hover:text-white"
+          className="dark:bg-dark-text dark:text-dark-mode border border-black py-2 mt-2 hover:bg-black hover:text-white"
         >
           Return
         </Button>

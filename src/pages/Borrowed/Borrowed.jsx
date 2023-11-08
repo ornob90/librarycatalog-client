@@ -50,15 +50,15 @@ const Borrowed = () => {
             <img
               src={user?.photoURL}
               alt=""
-              className="w-full h-full object-cover rounded-full"
+              className="w-full h-full object-cover rounded-full border dark:border-white "
             />
           </div>
-          <p className="text-3xl font-bold">
+          <p className="text-3xl font-bold dark:text-dark-text">
             {user?.displayName[0].toUpperCase() +
               user?.displayName.substr(1).toLowerCase()}
           </p>
         </div>
-        <Button className="border border-black px-6 py-2 rounded-lg hover:bg-black hover:text-white duration-300 font-semibold hidden md:block">
+        <Button className="dark:border-dark-text dark:text-dark-text border border-black px-6 py-2 rounded-lg hover:bg-black hover:text-white duration-300 font-semibold hidden md:block">
           Explore
         </Button>
       </div>
@@ -74,7 +74,7 @@ const Borrowed = () => {
                       name === "All" ? "w-[40px]" : ""
                     } text-center ${
                       activeCategory === name ? "border-b-2 border-black" : ""
-                    }`}
+                    } dark:text-dark-text`}
                     onClick={() => setActiveCategory(name)}
                   >
                     {name || "..."}
