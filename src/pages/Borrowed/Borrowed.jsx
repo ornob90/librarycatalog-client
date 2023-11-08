@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Container from "../../components/shared/Container";
 import Button from "../../components/Shared/Button";
 import BorrowCard from "../../components/Card/BorrowCard";
@@ -11,6 +11,7 @@ const Borrowed = () => {
   const { email, displayName: userName } = user || {};
 
   const [activeCategory, setActiveCategory] = useState("All");
+  const [booksToShow, setBooksToShow] = useState([]);
 
   const { data: categories, isLoading: categoryLoad } = useGet(
     ["BorrowedCategories"],
@@ -22,7 +23,22 @@ const Borrowed = () => {
     `/borrowed?email=${email}`
   );
 
+  useEffect(() => {
+    setBooksToShow(borrowedBooks);
+  }, [borrowedBooks]);
+
   // console.log(borrowedBooks);
+
+  useEffect(() => {
+    console.log(activeCategory);
+    if (activeCategory === "All") {
+      setBooksToShow(borrowedBooks);
+    } else {
+      setBooksToShow(
+        borrowedBooks?.filter((book) => book.category === activeCategory)
+      );
+    }
+  }, [activeCategory, borrowedBooks]);
 
   return (
     <Container className="pt-[28%] md:pt-[10%] w-[80%] md:w-[60%]">
@@ -72,7 +88,7 @@ const Borrowed = () => {
         <hr className=" border border-gray-200" />
       </div>
       <div className="my-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        {borrowedBooks?.map((book) => (
+        {booksToShow?.map((book) => (
           <BorrowCard key={book?._id} book={book} />
         ))}
       </div>
