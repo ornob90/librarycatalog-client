@@ -15,6 +15,14 @@ import logo from "../../assets/logo/logo.png";
 const Navbar = () => {
   const { pathname } = useLocation();
 
+  const [render, setRender] = useState("");
+
+  const { loading } = useAuth();
+
+  useEffect(() => {
+    setRender(loading);
+  }, [loading]);
+
   const [theme, setTheme] = useState("light");
   const html = document.documentElement;
 
@@ -40,7 +48,6 @@ const Navbar = () => {
   const { validAdmin } = useAdmin();
   const isDark = false;
   const { data: adminData, isLoading } = useGet(["AdminInfoNav"], "/admin");
-  const { loading } = useAuth();
 
   const navLinks = (
     <>
@@ -185,14 +192,14 @@ const Navbar = () => {
               <li className="mb-4 flex  flex-row  items-center justify-center">
                 <div className="md:hidden  rounded-full">
                   <img
-                    src={user?.photoURL}
+                    src={user && user.photoURL}
                     alt=""
                     className=" rounded-full object-cover h-[35px] w-[35px]"
                   />
                 </div>
 
                 <div className="flex w-[50%] items-center  h-full flex-row justify-between">
-                  <p className="md:hidden  w-max">Towfiq</p>
+                  <p className="md:hidden  w-max">{user && user.displayName}</p>
                   <div className="w-[30px] md:w-[50px] flex justify-end">
                     {theme === "dark" ? (
                       <BsFillSunFill
@@ -240,13 +247,12 @@ const Navbar = () => {
         {user ? (
           <div className="flex justify-end gap-4 items-center">
             <p className="hidden md:block dark:text-dark-text">
-              {user?.displayName[0].toUpperCase() +
-                user?.displayName.substr(1).toLowerCase()}
+              {user && user.displayName}
             </p>
             <div className="hidden md:block h-[40px] w-[40px] rounded-full border border-black">
               {user && (
                 <img
-                  src={user?.photoURL}
+                  src={user && user.photoURL}
                   alt=""
                   className="w-full h-full rounded-full object-cover"
                 />

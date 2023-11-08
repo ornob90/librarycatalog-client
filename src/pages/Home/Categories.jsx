@@ -12,6 +12,8 @@ const Categories = () => {
     isFetching,
   } = useGet(["book_categories"], "/categories");
 
+  console.log(book_categories);
+
   return (
     <div className="dark:bg-dark-mode pb-20">
       <Container className=" ">

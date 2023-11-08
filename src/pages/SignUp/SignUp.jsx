@@ -19,6 +19,7 @@ const SignUp = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
   const [loading, setLoading] = useState(false);
+  const { setUser } = useAuth();
 
   const defaultOptions = {
     loop: true,
