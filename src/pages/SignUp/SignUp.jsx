@@ -83,11 +83,16 @@ const SignUp = () => {
   return (
     <div className="text-[#4A4A4A]  min-h-screen flex justify-center items-center lg:grid  lg:grid-cols-5 text-sm ml-[5%]">
       <div className="flex flex-col justify-center col-span-2 mx-auto w-[90%] sm:w-[70%] md:w-[50%] lg:w-3/4 ">
-        <h3 className="text-[#151515] text-3xl font-bold">Join Us Today!</h3>
-        <p className="pt-2">
+        <h3 className="dark:text-dark-text text-[#151515] text-3xl font-bold">
+          Join Us Today!
+        </h3>
+        <p className="dark:text-dark-accent pt-2">
           Start your journey with us and be part of our community
         </p>
-        <form onSubmit={handleRegister} className="flex flex-col gap-4 mt-8">
+        <form
+          onSubmit={handleRegister}
+          className="flex flex-col gap-4 mt-8 dark:text-dark-text"
+        >
           <div>
             <p className="pb-2">User</p>
 
@@ -115,7 +120,7 @@ const SignUp = () => {
           </div>
           {errorMsg && <p className="text-red-600 text-sm">{errorMsg}</p>}
           <div className="flex items-center justify-between">
-            <Button className="px-4 py-2 font-medium text-white bg-black rounded-sm">
+            <Button className="px-4 py-2 font-medium text-white bg-black rounded-sm dark:text-dark-mode dark:bg-dark-text">
               Sign Up
             </Button>
             <p

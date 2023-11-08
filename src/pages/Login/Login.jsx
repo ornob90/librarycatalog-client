@@ -84,11 +84,16 @@ const Login = () => {
   return (
     <div className="text-[#4A4A4A]  h-screen min-h-[500px] flex justify-center items-center lg:grid  lg:grid-cols-5 text-sm ml-[5%] ">
       <div className="flex flex-col justify-center col-span-2 mx-auto w-[90%] sm:w-[70%] md:w-[50%] lg:w-3/4">
-        <h3 className="text-[#151515] text-3xl font-bold">Hey, welcome back</h3>
-        <p className="pt-2">Good to see you again!</p>
-        <form onSubmit={handleSignIn} className="flex flex-col gap-4 mt-8">
+        <h3 className=" text-[#151515]  dark:text-dark-text text-3xl font-bold">
+          Hey, welcome back
+        </h3>
+        <p className="pt-2 dark:text-dark-accent">Good to see you again!</p>
+        <form
+          onSubmit={handleSignIn}
+          className="dark:text-dark-text flex flex-col gap-4 mt-8"
+        >
           <div>
-            <p className="pb-2">Email address</p>
+            <p className=" pb-2">Email address</p>
 
             <Input name="email" placeholder="Enter you email..." />
           </div>
@@ -109,7 +114,7 @@ const Login = () => {
           {errorMsg && <p className="text-red-600 text-sm">{errorMsg}</p>}
 
           <div className="flex justify-between">
-            <Button className="px-4 py-2 font-medium text-white bg-black rounded-sm">
+            <Button className="px-4 py-2 font-medium text-white bg-black rounded-sm dark:bg-dark-text dark:text-dark-mode">
               Sign In
             </Button>
             <p

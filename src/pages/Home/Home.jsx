@@ -12,16 +12,10 @@ const Home = () => {
 
   return (
     <div>
-      {loading ? (
-        <Loading />
-      ) : (
-        <>
-          <Banner />
-          <Categories />
-          <About />
-          <Testimonials />
-        </>
-      )}
+      <Banner />
+      <Categories />
+      <About />
+      <Testimonials />
     </div>
   );
 };

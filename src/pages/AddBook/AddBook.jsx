@@ -2,8 +2,11 @@ import React from "react";
 import Container from "../../components/shared/Container";
 import BookForm from "../../components/Form/BookForm";
 import UpdateAddHeader from "../../components/shared/UpdateAddHeader";
+import useAuth from "../../hooks/useAuth";
 
 const AddBook = () => {
+  const { loading } = useAuth();
+
   return (
     <Container className="w-[60%] pt-[28%] md:pt-[15%] lg:pt-[10%]">
       <UpdateAddHeader />

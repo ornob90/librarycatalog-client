@@ -36,7 +36,7 @@ const AllBookCard = ({ book }) => {
         </div>
         <Rating
           name="half-rating-read"
-          value={rating}
+          value={parseInt(rating)}
           precision={0.5}
           readOnly
         />

@@ -16,16 +16,21 @@ const AdminProvider = ({ children }) => {
 
   useEffect(() => {
     setAdminLoading(true);
-    axios
-      .get(BASE_URL + "/admin", { withCredentials: true })
-      .then((res) => {
-        setAdminData(res.data);
-        setAdminLoading(false);
-      })
-      .catch((err) => {
-        console.log(err.message);
-        setAdminLoading(false);
-      });
+    if (user) {
+      console.log("admin call");
+      axios
+        .get(BASE_URL + "/admin", { withCredentials: true })
+        .then((res) => {
+          setAdminData(res.data);
+          setAdminLoading(false);
+        })
+        .catch((err) => {
+          console.log(err.message);
+          setAdminLoading(false);
+        });
+    } else {
+      setAdminLoading(false);
+    }
   }, [user]);
 
   const validAdmin = (role) => {
