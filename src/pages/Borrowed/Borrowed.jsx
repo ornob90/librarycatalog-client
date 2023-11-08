@@ -30,7 +30,7 @@ const Borrowed = () => {
   // console.log(borrowedBooks);
 
   useEffect(() => {
-    console.log(activeCategory);
+    // console.log(activeCategory);
     if (activeCategory === "All") {
       setBooksToShow(borrowedBooks);
     } else {
