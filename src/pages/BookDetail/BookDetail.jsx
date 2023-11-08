@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Container from "../../components/shared/Container";
 import { Rating } from "@mui/material";
 import Button from "../../components/Shared/Button";
@@ -6,13 +6,33 @@ import BorrowedForm from "../../components/Form/BorrowedForm";
 import { useNavigate, useParams } from "react-router-dom";
 import useGet from "../../hooks/useGet";
 import DetailSkeleton from "../../components/Skeleton/DetailSkeleton";
+import useAuth from "../../hooks/useAuth";
+import toast from "react-hot-toast";
 
 const BookDetail = () => {
   const navigate = useNavigate();
+  const [alreadyBorrowed, setAlreadyBorrowed] = useState(false);
 
   const { id } = useParams();
 
+  const { user } = useAuth();
+  const { email } = user;
+
   const { data: book, isLoading } = useGet(["BookDetails", id], `/book/${id}`);
+
+  const { data: borrowedBooks, isLoading: borrowedLoad } = useGet(
+    ["BorrowedBooksByUserEmail", email],
+    `/borrowed?email=${email}`
+  );
+
+  useEffect(() => {
+    setAlreadyBorrowed(
+      borrowedBooks?.find(
+        (borrowBook) =>
+          borrowBook?.email === email && borrowBook.bookId === book?._id
+      )
+    );
+  }, [borrowedBooks, email, book?._id]);
 
   const {
     _id,
@@ -27,6 +47,20 @@ const BookDetail = () => {
   } = book || {};
 
   // console.log(rating);
+
+  const handleBorrow = () => {
+    if (parseInt(quantity) === 0) {
+      toast.error("Not available currently!!");
+      return;
+    }
+
+    if (alreadyBorrowed) {
+      toast.error("You have already borrowed this book!!");
+      return;
+    }
+
+    document.getElementById("my_modal_1").showModal();
+  };
 
   return (
     <Container className="min-h-screen pt-[33%] sm:pt-[28%]   md:pt-[15%] lg:pt-[12%] mb-14">
@@ -68,10 +102,9 @@ const BookDetail = () => {
               </div>
               <div className="flex justify-between w-full">
                 <Button
-                  disabled={quantity === 0}
-                  onClick={() =>
-                    document.getElementById("my_modal_1").showModal()
-                  }
+                  // disabled={quantity === 0 || alreadyBorrowed}
+                  type="button"
+                  onClick={handleBorrow}
                   className="border border-black font-semibold w-2/5 py-2"
                 >
                   Borrow

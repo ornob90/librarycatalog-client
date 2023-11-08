@@ -3,7 +3,7 @@ import Button from "../Shared/Button";
 
 const DetailSkeleton = () => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-5 gap-10 md:gap-0">
+    <div className="-z-10 grid grid-cols-1 md:grid-cols-5 gap-10 md:gap-0">
       <div className="md:col-span-3 h-ful w-[42%] mx-auto animation-pulse bg-gray-300">
         {/* <img
           src={image}

@@ -5,7 +5,7 @@ import Button from "../Shared/Button";
 const HeaderSkeleton = () => {
   return (
     <div>
-      <div className="flex flex-col md:flex-row justify-center md:justify-between">
+      <div className="-z-10 flex flex-col md:flex-row justify-center md:justify-between">
         <div className="flex flex-col gap-4 w-[80%]">
           <h2 className="text-xl sm:text-3xl font-bold animate-pulse bg-gray-300 w-[40%] h-[60px]"></h2>
           <div className="flex gap-2 items-center">

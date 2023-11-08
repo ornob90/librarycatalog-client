@@ -120,13 +120,26 @@ const BookForm = ({ method, bookId = 12, bookToUpdate }) => {
         value={book?.author_name || ""}
         onChange={handleChange}
       />
-      <TextField
+      {/* <TextField
         required
         name="quantity"
         id="outlined-basic"
         label="Quantity"
         variant="outlined"
         className="md:col-span-1  bg-white"
+        value={book?.quantity || ""}
+        onChange={handleChange}
+      /> */}
+
+      <TextField
+        required
+        name="quantity"
+        id="outlined-basic"
+        label="Quantity"
+        variant="outlined"
+        className=" md:col-span-1  bg-white"
+        type="number"
+        min={0}
         value={book?.quantity || ""}
         onChange={handleChange}
       />

@@ -4,7 +4,7 @@ import Button from "../Shared/Button";
 
 const CardSkeleton = () => {
   return (
-    <div className="flex flex-col p-4  border shadow-sm rounded-lg justify-between">
+    <div className="-z-10 flex flex-col p-4  border shadow-sm rounded-lg justify-between">
       <div className="bg-gray-300 flex justify-center items-center animate-pulse h-[200px]"></div>
       <div className="flex flex-col gap-2 mt-10">
         <p className="font-bold text-xl text-clip bg-gray-300 h-[20px] w-[60%]"></p>

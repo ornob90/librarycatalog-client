@@ -4,7 +4,7 @@ import CardSkeleton from "./CardSkeleton";
 const CardListSkeleton = ({ col }) => {
   return (
     <div
-      className={`my-16 grid grid-cols-1 md:grid-cols-2 ${
+      className={`-z-10 my-16 grid grid-cols-1 md:grid-cols-2 ${
         col === 4 ? "lg:grid-cols-4" : "lg:grid-cols-3"
       } gap-2`}
     >
