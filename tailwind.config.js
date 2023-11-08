@@ -11,6 +11,7 @@ export default {
         "dark-text": "#f2f2f2",
         "dark-accent": "#8C8B8D",
         "dark-secondary": "#272626",
+        "dark-bg-gray": "#121212",
       },
     },
   },

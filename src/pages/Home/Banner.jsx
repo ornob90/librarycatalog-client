@@ -3,19 +3,19 @@ import Container from "../../components/shared/Container";
 
 const Banner = () => {
   return (
-    <div className="min-h-[500px] h-[70%] bg-gray-100 pt-[25%] sm:pt-[15%] md:pt-[7%]">
+    <div className="min-h-[500px] h-[70%] bg-gray-100 pt-[25%] sm:pt-[15%] md:pt-[7%] dark:bg-dark-bg-gray">
       <Container className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 h-full">
         <div
           className="lg:col-span-3 flex flex-col gap-4 
          justify-center text-center md:text-left"
         >
-          <h3 className="font-medium text-[#808080] text-md sm:text-xl md:text-md lg:text-xl">
+          <h3 className="font-medium text-[#808080] text-md sm:text-xl md:text-md lg:text-xl dark:text-dark-accent">
             Uncover Every Page of Knowledge.
           </h3>
-          <h1 className="font-bold text-3xl sm:text-4xl md:text-3xl lg:text-5xl">
+          <h1 className="font-bold text-3xl sm:text-4xl md:text-3xl lg:text-5xl dark:text-dark-text">
             The Catalog Corner: <br /> Discover Reads
           </h1>
-          <p className="text-[#808080] text-[13px] w-3/4 mx-auto md:m-0 md:w-2/4 text-center md:text-left">
+          <p className="text-[#808080] text-[13px] w-3/4 mx-auto md:m-0 md:w-2/4 text-center md:text-left dark:text-dark-accent">
             "Discover a vast catalog of organized reads. Find diverse literature
             at your fingertips. Explore, connect, and delve into the world of
             books."
