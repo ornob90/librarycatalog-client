@@ -4,6 +4,11 @@
 - **Email:** librarian@gmail.com
 - **Password:** Librarian1234()
 
+## Site URL
+```
+https://librarycatalog-cb000.web.app/
+```
+
 ## Description
 The LibraryCatalog project is a web application designed to manage a virtual library. Users can browse various book categories, view available books, borrow and return books, and perform librarian-specific operations such as adding or updating books.
 
