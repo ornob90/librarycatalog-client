@@ -40,6 +40,8 @@ const Borrowed = () => {
     }
   }, [activeCategory, borrowedBooks]);
 
+  const handleDuplicateBorrow = () => {};
+
   return (
     <Container className="pt-[28%] md:pt-[10%] w-[80%] md:w-[60%]">
       <div className="flex flex-row justify-center md:justify-between items-start w-full">
@@ -51,7 +53,10 @@ const Borrowed = () => {
               className="w-full h-full object-cover rounded-full"
             />
           </div>
-          <p className="text-3xl font-bold">{user?.displayName}</p>
+          <p className="text-3xl font-bold">
+            {user?.displayName[0].toUpperCase() +
+              user?.displayName.substr(1).toLowerCase()}
+          </p>
         </div>
         <Button className="border border-black px-6 py-2 rounded-lg hover:bg-black hover:text-white duration-300 font-semibold hidden md:block">
           Explore
@@ -89,7 +94,11 @@ const Borrowed = () => {
       </div>
       <div className="my-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
         {booksToShow?.map((book) => (
-          <BorrowCard key={book?._id} book={book} />
+          <BorrowCard
+            key={book?._id}
+            book={book}
+            handleDuplicateBorrow={handleDuplicateBorrow}
+          />
         ))}
       </div>
     </Container>

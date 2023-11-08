@@ -7,11 +7,11 @@
 7. Dynamic borrowed page by user email ------> Done
 8. Librarian role ------> Done
 9. After return increase quantity ------> Done
-10. Animation in login and sign up lage
+10. Animation in login and sign up lage ------> Done
 11. Axios interceptor ------> Done
-12. Dark mode 
-13. Skeleton or loading
-14. Error page
-15. Jwt authenticate
+12. Dark mode ------> Done
+13. Skeleton or loading 
+14. Error page 
+15. Jwt authenticate ------> Done
 16. Private route setup ------> Done
-17. disable booking button if quantity 0
+17. disable booking button if quantity 0 ------> Done

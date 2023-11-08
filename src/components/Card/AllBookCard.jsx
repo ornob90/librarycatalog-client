@@ -19,7 +19,7 @@ const AllBookCard = ({ book }) => {
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col p-4  border shadow-sm rounded-lg justify-between">
+    <div className="flex flex-col p-4  border shadow-sm rounded-lg justify-between dark:bg-[#e7e7e7]">
       <div className=" flex justify-center items-center">
         <img src={image} alt={name} className="h-[300px] md:h-[200px]" />
       </div>
@@ -34,7 +34,12 @@ const AllBookCard = ({ book }) => {
           <p>{category}</p>
           <p>{author_name}</p>
         </div>
-        <Rating name="half-rating-read" value={4.5} precision={0.5} readOnly />
+        <Rating
+          name="half-rating-read"
+          value={rating}
+          precision={0.5}
+          readOnly
+        />
         <Button
           type="button"
           onClick={() => navigate(`/update-book/${_id}`)}

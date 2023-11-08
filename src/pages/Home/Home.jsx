@@ -4,14 +4,24 @@ import Banner from "./Banner";
 import About from "./About";
 import Testimonials from "./Testimonials";
 import Categories from "./Categories";
+import useAuth from "../../hooks/useAuth";
+import Loading from "../../components/shared/Loading";
 
 const Home = () => {
+  const { loading } = useAuth();
+
   return (
     <div>
-      <Banner />
-      <Categories />
-      <About />
-      <Testimonials />
+      {loading ? (
+        <Loading />
+      ) : (
+        <>
+          <Banner />
+          <Categories />
+          <About />
+          <Testimonials />
+        </>
+      )}
     </div>
   );
 };

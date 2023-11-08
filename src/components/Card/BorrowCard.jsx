@@ -6,7 +6,7 @@ import usePut from "../../hooks/usePut";
 import toast from "react-hot-toast";
 import useGet from "../../hooks/useGet";
 
-const BorrowCard = ({ book }) => {
+const BorrowCard = ({ book, handleDuplicateBorrow }) => {
   const {
     _id,
     image,

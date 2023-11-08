@@ -30,6 +30,7 @@ const Navbar = () => {
   const { validAdmin } = useAdmin();
   const isDark = false;
   const { data: adminData, isLoading } = useGet(["AdminInfoNav"], "/admin");
+  const { loading } = useAuth();
 
   const navLinks = (
     <>
@@ -136,14 +137,14 @@ const Navbar = () => {
           : updateBook === "update-book"
           ? "absolute"
           : "fixed"
-      } top-0 left-0 drop-shadow-[0_0px_5px_rgba(0,0,0,0.12)]  w-full dark:bg-dark-mode dark:text-dark-text ${
+      } top-0 left-0 drop-shadow-[0_0px_5px_rgba(0,0,0,0.12)]   w-full dark:bg-dark-mode dark:text-dark-text ${
         pathname === "/login" || pathname === "/signup"
           ? "bg-transparent text-white"
           : "bg-gray-100  text-black"
-      }`}
+      }  ${loading ? "" : "z-10"}`}
     >
       <div
-        className={`z-10 navbar w-[95%] mx-auto max-w-[1440px] flex justify-between items-center  py-4 `}
+        className={`z-[100] navbar w-[95%] mx-auto max-w-[1440px] flex justify-between items-center  py-4 `}
       >
         <div className="">
           <div className="dropdown">

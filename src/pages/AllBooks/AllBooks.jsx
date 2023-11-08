@@ -48,30 +48,30 @@ const AllBooks = () => {
         <>
           <div className="flex flex-col md:flex-row justify-center md:justify-between">
             <div className="flex flex-col gap-4">
-              <h2 className="text-xl sm:text-3xl font-bold ">
+              <h2 className="text-xl sm:text-3xl font-bold dark:text-dark-text">
                 Complete Book Catalog
               </h2>
               <p className="text-[#808080] text-sm ">
                 <span className="mr-4">
-                  <span className="font-bold text-black text-lg">
+                  <span className="dark:text-dark-text font-bold text-black text-lg">
                     {count || "..."}
                   </span>{" "}
                   Total{" "}
                 </span>
-                <span className="font-bold text-black text-lg">
+                <span className="dark:text-dark-text font-bold text-black text-lg">
                   {availableCount || "..."}
                 </span>{" "}
                 Available
               </p>
               <div className="flex  gap-4 items-center">
-                <div className="hidden md:block h-[30px] w-[30px] rounded-full border border-black">
+                <div className="hidden md:block h-[30px] w-[30px] rounded-full border border-black dark:border-white">
                   <img
                     src={user?.photoURL}
                     alt=""
                     className="w-full h-full object-cover rounded-full"
                   />
                 </div>
-                <p className="hidden md:block font-semibold">
+                <p className="hidden md:block font-semibold dark:text-dark-accent">
                   {user?.displayName}
                 </p>
               </div>
