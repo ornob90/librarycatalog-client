@@ -8,19 +8,23 @@ import { BsFillMoonStarsFill, BsFillSunFill } from "react-icons/bs";
 import toast from "react-hot-toast";
 import useGet from "../../hooks/useGet";
 import useAdmin from "../../hooks/useAdmin";
+
 // import useTheme from "../../Hooks/useTheme";
 
 const Navbar = () => {
   const { pathname } = useLocation();
 
+  const [theme, setTheme] = useState("light");
+
   const updateBook = pathname.split("/")[1];
+
   // console.log(pathname.split("/")[1], updateBook);
 
   const [hidden, setHidden] = useState(false);
 
   const navigate = useNavigate();
   const { user, signOutMethod } = useAuth();
-  console.log(user?.photoURL);
+  // console.log(user?.photoURL);
 
   const { validAdmin } = useAdmin();
   const isDark = false;
@@ -34,8 +38,8 @@ const Navbar = () => {
           to="/"
           className={({ isActive }) =>
             isActive
-              ? "font-medium bg-black text-white py-2 px-4 rounded-sm"
-              : "font-medium"
+              ? "dark:text-dark-mode dark:bg-dark-text font-medium bg-black text-white py-2 px-4 rounded-sm"
+              : "font-medium dark:text-dark-text"
           }
         >
           <span
@@ -56,8 +60,8 @@ const Navbar = () => {
           to="/add-book"
           className={({ isActive }) =>
             isActive
-              ? "font-medium bg-black text-white py-2 px-3 rounded-sm"
-              : "font-medium"
+              ? "dark:text-dark-mode dark:bg-dark-text font-medium bg-black text-white py-2 px-3 rounded-sm"
+              : "font-medium dark:text-dark-text"
           }
         >
           Add Book
@@ -70,8 +74,8 @@ const Navbar = () => {
           to="/all-books"
           className={({ isActive }) =>
             isActive
-              ? "font-medium bg-black text-white py-2 px-3 rounded-sm"
-              : "font-medium"
+              ? "dark:text-dark-mode dark:bg-dark-text font-medium bg-black text-white py-2 px-3 rounded-sm"
+              : "font-medium dark:text-dark-text"
           }
         >
           All Books
@@ -83,8 +87,8 @@ const Navbar = () => {
           to="/borrowed"
           className={({ isActive }) =>
             isActive
-              ? "font-medium bg-black text-white py-2 px-3 rounded-sm"
-              : "font-medium"
+              ? "dark:text-dark-mode dark:bg-dark-text font-medium bg-black text-white py-2 px-3 rounded-sm"
+              : "font-medium dark:text-dark-text"
           }
         >
           Borrowed
@@ -94,6 +98,21 @@ const Navbar = () => {
   );
 
   // console.log(user);
+
+  const handleTheme = () => {
+    // console.log("clicked");
+    const html = document.documentElement;
+
+    if (theme === "light") {
+      html.classList.remove("light");
+      html.classList.add("dark");
+      setTheme("dark");
+    } else {
+      html.classList.remove("dark");
+      html.classList.add("light");
+      setTheme("light");
+    }
+  };
 
   const handleSignOut = () => {
     signOutMethod()
@@ -109,21 +128,21 @@ const Navbar = () => {
   return (
     <nav
       className={`${
-        pathname === "/add-book"
+        pathname === "/add-book" ||
+        pathname === "/login" ||
+        pathname === "/signup"
           ? "absolute"
           : updateBook === "update-book"
           ? "absolute"
           : "fixed"
-      } top-0 left-0 drop-shadow-[0_0px_5px_rgba(0,0,0,0.12)]  w-full ${
+      } top-0 left-0 drop-shadow-[0_0px_5px_rgba(0,0,0,0.12)]  w-full dark:bg-dark-mode dark:text-dark-text ${
         pathname === "/login" || pathname === "/signup"
           ? "bg-transparent text-white"
-          : isDark
-          ? "bg-[#121212] text-white"
           : "bg-gray-100  text-black"
       }`}
     >
       <div
-        className={`z-10 navbar w-[95%] mx-auto max-w-[1440px] flex justify-between items-center  py-4`}
+        className={`z-10 navbar w-[95%] mx-auto max-w-[1440px] flex justify-between items-center  py-4 `}
       >
         <div className="">
           <div className="dropdown">
@@ -151,21 +170,29 @@ const Navbar = () => {
               } z-10`}
             >
               <li className="mb-4 flex  flex-row  items-center justify-center">
-                <div className="md:hidden h-[60px] w-[60px] rounded-full border border-black">
+                <div className="md:hidden  rounded-full">
                   <img
                     src={user?.photoURL}
                     alt=""
-                    className="w-full h-full rounded-full object-cover"
+                    className=" rounded-full object-cover h-[35px] w-[35px]"
                   />
                 </div>
 
                 <div className="flex w-[50%] items-center  h-full flex-row justify-between">
                   <p className="md:hidden  w-max">Towfiq</p>
-                  <input
-                    type="checkbox"
-                    className="toggle toggle-error toggle-sm"
-                    checked={isDark}
-                  />
+                  <div className="w-[30px] md:w-[50px] flex justify-end">
+                    {theme === "dark" ? (
+                      <BsFillSunFill
+                        className="text-xl text-white"
+                        onClick={handleTheme}
+                      />
+                    ) : (
+                      <BsFillMoonStarsFill
+                        className="text-lg"
+                        onClick={handleTheme}
+                      />
+                    )}
+                  </div>
                 </div>
               </li>
               {navLinks}
@@ -188,7 +215,7 @@ const Navbar = () => {
                 pathname === "/login" || pathname === "/signup"
                   ? "text-black"
                   : ""
-              }`}
+              } dark:text-dark-text`}
             >
               LibraryCatalog
             </p>
@@ -199,8 +226,11 @@ const Navbar = () => {
         </div>
         {user ? (
           <div className="flex justify-end gap-4 items-center">
-            <p className="hidden md:block ">{user?.displayName}</p>
-            <div className="hidden md:block h-[30px] w-[30px] rounded-full border border-black">
+            <p className="hidden md:block dark:text-dark-text">
+              {user?.displayName[0].toUpperCase() +
+                user?.displayName.substr(1).toLowerCase()}
+            </p>
+            <div className="hidden md:block h-[40px] w-[40px] rounded-full border border-black">
               {user && (
                 <img
                   src={user?.photoURL}
@@ -212,15 +242,23 @@ const Navbar = () => {
 
             <Button
               onClick={handleSignOut}
-              className="bg-black text-white py-1 px-2 md:py-2 md:px-5 rounded-sm text-sm md:text-base"
+              className="bg-black text-white py-1 px-2 md:py-2 md:px-5 rounded-sm text-sm md:text-base dark:bg-dark-text dark:text-dark-mode"
             >
               Sign Out
             </Button>
-            <input
-              type="checkbox"
-              className="toggle toggle-error checked:bg-black md:toggle-md toggle-sm hidden md:block"
-              checked={isDark}
-            />
+            <div className="w-[20px] md:w-[50px] hidden md:block">
+              {theme === "dark" ? (
+                <BsFillSunFill
+                  className="text-xl sm:text-2xl md:text-3xl text-white"
+                  onClick={handleTheme}
+                />
+              ) : (
+                <BsFillMoonStarsFill
+                  className="text-lg sm:text-xl md:text-2xl"
+                  onClick={handleTheme}
+                />
+              )}
+            </div>
           </div>
         ) : (
           <div className="flex gap-2">
@@ -230,11 +268,19 @@ const Navbar = () => {
             >
               Login
             </Button>
-            <input
-              type="checkbox"
-              className="toggle toggle-error checked:bg-black md:toggle-md toggle-sm hidden md:block"
-              checked={isDark}
-            />
+            <div className="w-[30px] md:w-[50px] hidden md:block">
+              {theme === "dark" ? (
+                <BsFillSunFill
+                  className="text-xl sm:text-2xl md:text-3xl text-white"
+                  onClick={handleTheme}
+                />
+              ) : (
+                <BsFillMoonStarsFill
+                  className="text-lg sm:text-xl md:text-2xl"
+                  onClick={handleTheme}
+                />
+              )}
+            </div>
           </div>
         )}
 
