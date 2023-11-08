@@ -72,11 +72,11 @@ const BorrowCard = ({ book, handleDuplicateBorrow }) => {
   };
 
   return (
-    <div className="flex flex-col p-4  border shadow-sm ">
-      <div className=" flex justify-center items-center">
+    <div className="flex flex-col   border shadow-sm ">
+      <div className="dark:bg-white flex justify-center items-center p-4">
         <img src={image} alt="" className="h-[300px] md:h-[200px]" />
       </div>
-      <div className="mt-8 flex flex-col gap-2">
+      <div className="p-4 mt-8 flex flex-col gap-2">
         <p className="text-[#808080] text-sm dark:text-dark-accent">
           {category}
         </p>

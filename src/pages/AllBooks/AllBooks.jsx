@@ -109,11 +109,11 @@ const AllBooks = () => {
           <div
             key={value}
             onClick={() => setPage(value)}
-            className={`w-[25px] sm:w-[30px] h-[25px] sm:h-[30px] border border-black rounded-full flex justify-center items-center cursor-pointer hover:bg-black hover:text-white duration-300 ${
+            className={`w-[25px] sm:w-[30px] h-[25px] sm:h-[30px] border border-black rounded-full flex justify-center items-center cursor-pointer hover:bg-black hover:text-white duration-300 dark:text-dark-text${
               page === value
-                ? "bg-black text-white hover:bg-black hover:text-white"
+                ? "bg-black text-white hover:bg-black hover:text-white dark:bg-dark-text dark:text-dark-mode"
                 : ""
-            }`}
+            } dark:border-dark-text dark:hover:bg-dark-text dark:hover:text-black`}
           >
             {value + 1}
           </div>

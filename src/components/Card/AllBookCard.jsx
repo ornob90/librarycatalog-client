@@ -19,12 +19,12 @@ const AllBookCard = ({ book }) => {
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col p-4  border shadow-sm rounded-lg justify-between dark:bg-[#e7e7e7]">
-      <div className=" flex justify-center items-center">
+    <div className="flex flex-col  border shadow-sm rounded-lg justify-between dark:bg-[#e7e7e7]">
+      <div className=" p-4 flex justify-center items-center">
         <img src={image} alt={name} className="h-[300px] md:h-[200px]" />
       </div>
-      <div className="flex flex-col gap-2 mt-10">
-        <p className="font-bold text-xl text-clip">
+      <div className="p-4  dark:bg-dark-mode flex flex-col gap-2 mt-10">
+        <p className="font-bold text-xl text-clip dark:text-dark-text">
           {name.split(" ").slice(0, 4)}{" "}
           <span className="text-[#808080] text-sm">
             {name.split(" ").length > 4 ? ". . ." : ""}
@@ -43,7 +43,7 @@ const AllBookCard = ({ book }) => {
         <Button
           type="button"
           onClick={() => navigate(`/update-book/${_id}`)}
-          className="border border-black py-2 mt-2 bg-black text-white hover:bg-white hover:text-black"
+          className="dark:bg-dark-text dark:text-dark-mode border border-black py-2 mt-2 bg-black text-white hover:bg-white hover:text-black"
         >
           Update
         </Button>

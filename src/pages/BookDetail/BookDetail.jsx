@@ -79,14 +79,18 @@ const BookDetail = () => {
           <div className="md:col-span-2 flex flex-col  gap-4">
             <div>
               <p className="text-[#808080] font-bold">{author_name}</p>
-              <h1 className="font-bold text-3xl my-3 ">{name}</h1>
-              <p>
-                <span className="text-xl font-semibold">{quantity}</span>{" "}
+              <h1 className="font-bold text-3xl my-3 dark:text-dark-text">
+                {name}
+              </h1>
+              <p className="dark:text-dark-accent">
+                <span className="text-xl font-semibold dark:text-dark-text">
+                  {quantity}
+                </span>{" "}
                 available
               </p>
             </div>
             <div className="flex flex-col gap-3 border min-h-[25%]">
-              <p className="text-sm text-gray-500 p-4 w-[80%] rounded-lg">
+              <p className="text-sm text-gray-500 p-4 w-[80%] rounded-lg dark:text-dark-text">
                 {short_description}
               </p>
             </div>
@@ -98,14 +102,16 @@ const BookDetail = () => {
                   precision={0.5}
                   readOnly
                 />
-                <p className="font-bold text-xl">{category}</p>
+                <p className="dark:text-dark-text font-bold text-xl">
+                  {category}
+                </p>
               </div>
               <div className="flex justify-between w-full">
                 <Button
                   // disabled={quantity === 0 || alreadyBorrowed}
                   type="button"
                   onClick={handleBorrow}
-                  className="border border-black font-semibold w-2/5 py-2"
+                  className="dark:bg-dark-text dark:text-dark-mode border border-black font-semibold w-2/5 py-2"
                 >
                   Borrow
                 </Button>
@@ -115,7 +121,7 @@ const BookDetail = () => {
 
                 <Button
                   onClick={() => navigate(`/read/${id}`)}
-                  className="bg-black w-2/5 text-white font-semibold"
+                  className="dark:bg-dark-text dark:text-dark-mode bg-black w-2/5 text-white font-semibold"
                 >
                   Read
                 </Button>

@@ -29,24 +29,24 @@ const BookByCategory = () => {
   } = categoryData || {};
 
   return (
-    <div className="mb-14">
+    <div className="mb-14 ">
       {categoryLoad ? (
         <BookByHeaderSkeleton />
       ) : (
-        <div className="bg-gray-200 pt-[25%] sm:pt-[20%] lg:pt-[5%] ">
+        <div className="bg-gray-200 pt-[25%] sm:pt-[20%] lg:pt-[5%] dark:bg-dark-mode ">
           <Container>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 h-max">
               <div
                 className="lg:col-span-3 flex flex-col gap-4 
    justify-center text-center md:text-left"
               >
-                <h3 className="font-medium text-[#808080] text-md sm:text-xl md:text-md lg:text-xl">
+                <h3 className="font-medium text-[#808080] text-md sm:text-xl md:text-md lg:text-xl dark:text-dark-accent">
                   {categorySubTitle || ""}
                 </h3>
-                <h1 className="font-bold text-3xl sm:text-4xl md:text-3xl lg:text-5xl">
+                <h1 className="font-bold text-3xl sm:text-4xl md:text-3xl lg:text-5xl dark:text-dark-text">
                   {categoryTitle || ""}
                 </h1>
-                <p className="text-[#808080] text-[13px] w-3/4 mx-auto md:m-0 md:w-2/4 text-center md:text-left">
+                <p className="text-[#808080] text-[13px] w-3/4 mx-auto md:m-0 md:w-2/4 text-center md:text-left dark:text-dark-accent">
                   {categoryDesc || ""}
                 </p>
               </div>
@@ -64,7 +64,7 @@ const BookByCategory = () => {
 
       <Container>
         <div className="text-center text-2xl md:text-4xl font-bold my-10">
-          <h1>Discover You Books</h1>
+          <h1 className="dark:text-dark-text">Discover You Books</h1>
         </div>
 
         {booksLoad ? (

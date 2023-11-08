@@ -28,16 +28,17 @@ const BookCard = ({ book }) => {
       </div>
       <div className="p-4  flex flex-col justify-between h-[40%]">
         <div className="flex items-center justify-between">
-          <p className="text-[#808080]">{author_name}</p>
+          <p className="text-[#808080] dark:text-dark-accent">{author_name}</p>
           <Rating
             name="half-rating-read"
             value={rating}
             precision={0.5}
             readOnly
+            className=""
           />
         </div>
         <div className="flex items-center justify-between ">
-          <p className="font-bold text-lg">
+          <p className="font-bold text-lg dark:text-dark-text">
             {name.split(" ").slice(0, 4)}{" "}
             <span className="text-[#808080] text-sm">
               {name.split(" ").length > 4 ? ". . ." : ""}
@@ -47,7 +48,7 @@ const BookCard = ({ book }) => {
         </div>
 
         <Button
-          className="bg-black text-white py-1 px-2 md:py-2 md:px-5  text-sm md:text-base w-full rounded-lg font-bold "
+          className="dark:bg-dark-text dark:text-dark-mode bg-black text-white py-1 px-2 md:py-2 md:px-5  text-sm md:text-base w-full rounded-lg font-bold "
           onClick={() => navigate(`/book/${_id}`)}
         >
           Details
