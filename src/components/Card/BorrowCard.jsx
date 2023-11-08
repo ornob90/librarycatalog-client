@@ -4,6 +4,7 @@ import useDelete from "../../hooks/useDelete";
 import useAuth from "../../hooks/useAuth";
 import usePut from "../../hooks/usePut";
 import toast from "react-hot-toast";
+import useGet from "../../hooks/useGet";
 
 const BorrowCard = ({ book }) => {
   const {
@@ -16,12 +17,20 @@ const BorrowCard = ({ book }) => {
     // short_description,
     rating,
     // content,
+    bookId,
     returnDate,
     borrowedDate,
   } = book || {};
 
   const { user } = useAuth();
   const { email } = user || {};
+
+  const { data: bookToReturn, isLoading } = useGet(
+    ["BookToReturn", bookId],
+    `/book/${bookId}`
+  );
+
+  // console.log(bookToReturn);
 
   const { mutateAsync: deleteBorrowBook } = useDelete(
     [["BorrowedBooksByUserEmail", email]],
@@ -34,25 +43,16 @@ const BorrowCard = ({ book }) => {
   );
 
   const handleReturn = async () => {
-    const {
-      _id,
-      email,
-      borrowedDate,
-      returnDate,
-      userName,
-      bookId,
-      ...bookInfo
-    } = book;
+    const { _id, ...bookInfo } = bookToReturn;
 
     const { quantity } = bookInfo;
 
     const quantityUpdatedBook = {
       ...bookInfo,
+      quantity: quantity + 1,
     };
 
-    console.log(quantityUpdatedBook);
-
-    console.log(quantityUpdatedBook);
+    // console.log(quantityUpdatedBook);
 
     try {
       await toast.promise(deleteBorrowBook(), {
@@ -74,11 +74,7 @@ const BorrowCard = ({ book }) => {
   return (
     <div className="flex flex-col p-4  border shadow-sm rounded-lg">
       <div className=" flex justify-center items-center">
-        <img
-          src="https://m.media-amazon.com/images/I/81XCRGlex6L._AC_UF1000,1000_QL80_.jpg"
-          alt=""
-          className="h-[300px] md:h-[200px]"
-        />
+        <img src={image} alt="" className="h-[300px] md:h-[200px]" />
       </div>
       <div className="mt-8 flex flex-col gap-2">
         <p className="text-[#808080] text-sm">{category}</p>
