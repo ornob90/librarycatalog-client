@@ -11,7 +11,7 @@ const Footer = () => {
     <footer
       className={`footer pt-24 p-10  text-base-content w-full max-w-[1440px] mx-auto  ${
         pathname === "/login" || pathname === "/signup" ? "hidden" : ""
-      } ${isDark ? "bg-[#121212] text-white" : "bg-base-200"}`}
+      } dark:bg-dark-mode dark:text-dark-text `}
     >
       <aside className="">
         <NavLink className="text-lg md:text-2xl">LibraryCatalog</NavLink>
